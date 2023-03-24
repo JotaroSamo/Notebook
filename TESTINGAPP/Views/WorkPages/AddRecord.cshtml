@@ -1,0 +1,38 @@
+﻿@using TESTINGAPP.Models.DB
+
+<h1>Записная книжка</h1>
+<form action="" method="post">
+   <div>
+        <label for="note">Заметка:</label>
+        <textarea id="note" name="note" placeholder="Введите заметку" required></textarea>
+   </div>
+    <div>
+        <label for="note">Изображение:</label>
+        <input type="file" id="img" name="img" placeholder="Добавьте изображение" required>
+    </div>
+    <div>
+        <label for="note">Категория:</label>
+        <select id="cat" name="cat">
+           @using (RecordContext db = new RecordContext())
+            {
+                var category = db.Categories;
+                if (category!=null)
+                {
+                     foreach (var i in category)
+                {
+                    <option value="category">@i.Name</option>
+                }
+                }
+               
+            }
+        </select>
+    </div>
+    <div>
+        <label for="note">Ссылка:</label>
+        <input type="url" id="url" name="url" placeholder="Ссылка" required>
+    </div>
+   <div>
+        <input type="submit" value="Добавить">
+   </div>
+
+</form>
