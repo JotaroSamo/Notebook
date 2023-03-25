@@ -8,6 +8,7 @@ namespace TESTINGAPP.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly RecordContext _recordContext;
     
         public HomeController(ILogger<HomeController> logger)
         {
@@ -16,7 +17,8 @@ namespace TESTINGAPP.Controllers
 
         public IActionResult Index()
         {
-          
+            //_recordContext.Users.Add(new User() { Name="a" });
+            //_recordContext.SaveChanges();
                 return View();
         }
 
