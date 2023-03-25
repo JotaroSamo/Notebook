@@ -1,4 +1,6 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TESTINGAPP.Mapper;
 using TESTINGAPP.Models;
 
 
@@ -9,7 +11,10 @@ builder.Services.AddDbContext<RecordContext>(options => options.UseSqlServer(con
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
-
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MapperProfile());
+});
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
