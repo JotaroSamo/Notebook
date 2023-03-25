@@ -7,13 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TESTINGAPP.Common\TESTINGAPP.Common.csproj" />
-    <ProjectReference Include="..\TESTINGAPP.Models\TESTINGAPP.Models.csproj" />
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
-    <Folder Include="Services\" />
+    <ProjectReference Include="..\TESTINGAPP.Common\TESTINGAPP.Common.csproj" />
+    <ProjectReference Include="..\TESTINGAPP.Models\TESTINGAPP.Models.csproj" />
   </ItemGroup>
 
 </Project>

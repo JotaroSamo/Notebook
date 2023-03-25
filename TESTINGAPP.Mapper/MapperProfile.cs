@@ -14,7 +14,7 @@ namespace TESTINGAPP.Mapper
         public MapperProfile()
         {
             CreateMap<UserCreateDto, User>();
-            CreateMap<RecordCreateDto, Record>();
+            //CreateMap<RecordCreateDto, Record>();
         }
     }
 }

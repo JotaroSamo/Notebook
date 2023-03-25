@@ -1,20 +1,23 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using TESTINGAPP.BusinessLogic.Interfaces;
+using TESTINGAPP.BusinessLogic.Services;
 using TESTINGAPP.Mapper;
-
-
+using TESTINGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<TESTINGAPP.Models.RecordContext>(options => options.UseSqlServer(connection));
+builder.Services.AddDbContext<RecordContext>(options => options.UseSqlServer(connection));
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddTransient<IUserService, UserService>();
 
-var app = builder.Build();
 var mappingConfig = new MapperConfiguration(mc =>
 {
     mc.AddProfile(new MapperProfile());
 });
+var app = builder.Build();
+
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
@@ -22,7 +25,6 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
