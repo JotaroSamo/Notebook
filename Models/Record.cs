@@ -9,8 +9,8 @@ namespace TESTINGAPP.Models.DB
         public DateTime Date { get; set; } // дата
         public string Title { get; set; } // название
         public string Description { get; set; } // описание
-        public List<Category> Categories { get; set; } // категории
-        public string url { get; set; } // ссылки
+        public string Categories { get; set; } // категории
+        public string Url { get; set; } // ссылки
         public byte[] Photo { get; set; } // фотография
     }
 }

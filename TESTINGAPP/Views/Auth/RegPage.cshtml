@@ -1,16 +1,25 @@
-﻿<form>
-    <h2>Регистрация</h2>
-    <label for="username">Имя пользователя:</label>
-    <input type="text" id="username" name="username" required><br>
+﻿@model TESTINGAPP.Common.Dto.UserCreateDto
+<form asp-controller="Auth" asp-action="RegPage" method="post">
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br>
+    <div class="form-group">
+        <label class="control-label">Email: </label>
+        @Html.TextBoxFor(x => x.Email, new { size = 32 })
+    </div>
 
-    <label for="password">Пароль:</label>
-    <input type="password" id="password" name="password" required><br>
+    <div class="form-group">
+        <label class="control-label">Password: </label>
+        @Html.TextBoxFor(x => x.Password, new { size = 32 })
+    </div>
 
-    <label for="confirm-password">Подтвердите пароль:</label>
-    <input type="password" id="confirm-password" name="confirm-password" required><br>
+    <div class="form-group">
+        <label class="control-label">Name: </label>
+        @Html.TextBoxFor(x => x.Name, new { size = 32 })
+    </div>
 
-    <button type="submit">Зарегистрироваться</button>
+    <div class="form-group">
+        <label class="control-label">Age: </label>
+        @Html.TextBoxFor(x => x.Age, new { size = 32 })
+    </div>
+
+    <input class="button" type="submit" value="Auth">
 </form>
