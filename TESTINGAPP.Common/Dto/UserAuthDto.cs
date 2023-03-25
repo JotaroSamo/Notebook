@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace TESTINGAPP.Common.Dto
 {
-    internal class UserAuthDto
+    public class UserAuthDto
     {
+        public string Email { get; set; }
+
+        public string Password { get; set; }
     }
 }
