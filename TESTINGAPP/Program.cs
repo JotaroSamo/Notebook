@@ -1,16 +1,18 @@
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
 using TESTINGAPP.Mapper;
 using TESTINGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-var connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<RecordContext>(options => options.UseSqlServer(connection));
-// Add services to the container.
+builder.Services.AddDbContext<RecordContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IUserService, UserService>();
+//builder.Services.AddTransient<IUserService, UserService>();
 
 var mappingConfig = new MapperConfiguration(mc =>
 {

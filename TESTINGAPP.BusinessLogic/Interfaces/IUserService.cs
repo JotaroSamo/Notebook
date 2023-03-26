@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
+using AutoMapper;
 
 namespace TESTINGAPP.BusinessLogic.Interfaces
 {
