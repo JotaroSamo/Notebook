@@ -7,17 +7,17 @@ using TESTINGAPP.Mapper;
 using TESTINGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<RecordContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+//builder.Services.AddDbContext<RecordContext>(options =>
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //Add services to the container.
 builder.Services.AddControllersWithViews();
 //builder.Services.AddTransient<IUserService, UserService>();
 
-var mappingConfig = new MapperConfiguration(mc =>
-{
-    mc.AddProfile(new MapperProfile());
-});
+//var mappingConfig = new MapperConfiguration(mc =>
+//{
+//    mc.AddProfile(new MapperProfile());
+//});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
