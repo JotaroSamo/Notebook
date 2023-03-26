@@ -1,4 +1,4 @@
-﻿@model TESTINGAPP.Common.Dto.UserCreateDto
+﻿@model TESTINGAPP.Models.User
 <form asp-controller="Auth" asp-action="RegPage" method="post">
 
     <div class="form-group">
@@ -23,3 +23,18 @@
 
     <input class="button" type="submit" value="Auth">
 </form>
+@*<form method="post" asp-action="RegPage" asp-controller="Auth">
+    <label>Имя пользователя:</label>
+    <input type="text" name="Name" />
+    <br />
+    <label>Почта:</label>
+    <input type="email" name="Email" />
+    <br />
+    <label>Пароль:</label>
+    <input type="password" name="Password" />
+    <br />
+    <label>Возраст:</label>
+    <input type="text" name="Age" />
+    <br />
+    <button class="button" type="submit">Регестрация</button>
+</form>*@

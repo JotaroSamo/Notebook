@@ -7,8 +7,8 @@ using TESTINGAPP.Mapper;
 using TESTINGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
-//builder.Services.AddDbContext<RecordContext>(options =>
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<RecordContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //Add services to the container.
 builder.Services.AddControllersWithViews();

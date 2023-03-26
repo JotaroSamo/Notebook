@@ -13,8 +13,8 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
     {
         void Create(UserCreateDto userCreateDto);
 
-        List<User> GetAll();
+        //List<User> GetAll();
 
-        User Get(UserAuthDto userAuthDto);
+        //User Get(UserAuthDto userAuthDto);
     }
 }

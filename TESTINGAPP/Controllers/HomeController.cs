@@ -17,15 +17,7 @@ namespace TESTINGAPP.Controllers
 
         public IActionResult Index()
         {
-
-
-
-            using (var _recordContext = new RecordContext())
-            {
-                _recordContext.Users.Add(new User() { Name = "a", Age="13", Password="1", Email="1", Role=false});
-                _recordContext.SaveChanges();
-            }
-                
+ 
             return View();
         }
 
