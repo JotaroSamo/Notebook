@@ -32,7 +32,7 @@ namespace TESTINGAPP.Controllers
 
             var check = new UserAuthDto();
 
-            if ( _userService.Get(check) == null)
+            if (await _userService.GetAsync(check) == null)
             {
                 await _userService.CreateAsync(model);
 
