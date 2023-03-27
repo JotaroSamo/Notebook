@@ -13,10 +13,7 @@ builder.Services.AddDbContext<RecordContext>(options =>
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IUserService, UserService>();
 
-//var mappingConfig = new MapperConfiguration(mc =>
-//{
-//    mc.AddProfile(new MapperProfile());
-//});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

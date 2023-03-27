@@ -1,25 +1,27 @@
 ﻿@model TESTINGAPP.Common.Dto.UserCreateDto
-<form asp-controller="Auth" asp-action="RegPage" method="post">
-
-    <div class="form-group">
-        <label class="control-label">Email: </label>
-        @Html.TextBoxFor(x => x.Email, new { size = 32 })
+<link href="~/css/site.css" rel="stylesheet" />
+<form method="post" asp-action="RegPage" asp-controller="Auth">
+    <div>
+        <label>Имя пользователя:</label>
+        <input type="text" name="Name" maxlength="32" />
     </div>
-
-    <div class="form-group">
-        <label class="control-label">Password: </label>
-        @Html.TextBoxFor(x => x.Password, new { size = 32 })
+   
+    <div>
+        <label>Почта:</label>
+        <input type="email" name="Email" maxlength="32" />
     </div>
+   
 
-    <div class="form-group">
-        <label class="control-label">Name: </label>
-        @Html.TextBoxFor(x => x.Name, new { size = 32 })
+    <div>
+        <label>Пароль:</label>
+        <input type="password" name="Password" maxlength="32" />
     </div>
-
-    <div class="form-group">
-        <label class="control-label">Age: </label>
-        @Html.TextBoxFor(x => x.Age, new { size = 32 })
+   
+    <div>
+    <label>Возраст:</label>
+        <input type="text" name="Age" maxlength="32" />
     </div>
-
-    <input class="button" type="submit" value="Auth">
+    <div>
+        <input type="submit" value="Регестрация">
+    </div>
 </form>

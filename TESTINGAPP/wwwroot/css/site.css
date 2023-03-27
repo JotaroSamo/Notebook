@@ -1,56 +1,50 @@
+/* Базовый размер шрифта */
 html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
     font-size: 16px;
-  }
 }
 
+/* Медиа-запрос для увеличения размера шрифта на больших экранах */
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Установка полной высоты для html-элемента */
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
+/* Шрифт по умолчанию для body-элемента */
 body {
     font-family: Arial, sans-serif;
 }
 
+/* Стиль для заголовков первого уровня */
 h1 {
     text-align: center;
+    margin-top: 30px;
 }
 
+/* Стиль для формы */
 form {
     margin: 0 auto;
     width: 80%;
+    max-width: 600px;
 }
 
+/* Стиль для меток (лейблов) */
 label {
     display: block;
     margin-top: 10px;
+    font-weight: bold;
 }
 
+/* Стиль для текстовых полей, полей ввода пароля, поля ввода почты и URL */
 input[type="text"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-input[type="image"],
-textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+input[type="password"],
+input[type="email"],
 input[type="url"],
 textarea {
     width: 100%;
@@ -62,6 +56,16 @@ textarea {
     box-sizing: border-box;
 }
 
+/* Стиль для поля ввода файла */
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+/* Стиль для кнопки отправки формы */
 input[type="submit"] {
     background-color: #4CAF50;
     color: white;
@@ -72,6 +76,7 @@ input[type="submit"] {
     float: right;
 }
 
+    /* Стиль при наведении на кнопку отправки формы */
     input[type="submit"]:hover {
         background-color: #45a049;
     }

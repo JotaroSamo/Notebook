@@ -1,22 +1,29 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
 @model TESTINGAPP.Common.Dto.UserAuthDto;
+<link href="~/css/site.css" rel="stylesheet" />
 @if (User.Identity.IsAuthenticated)
 {
     <a @*asp-controller="Home" asp-action="GetUsers" method="Get"*@>Get Users</a>
 }
 
-@*<a asp-action="CreateUser" accesskey="token">Create</a>
-<form asp-controller="Home" asp-action="Auth" method="Post">
-    <div class="form-group">
-        <label class="control-label">Email: </label>
-        @Html.TextBoxFor(x => x.Email, new { size = 32 })
+<form method="post" asp-action="RegPage" asp-controller="Auth">
+ 
+
+    <div>
+        <label>Почта:</label>
+        <input type="email" name="Email" maxlength="32" />
     </div>
 
-    <div class="form-group">
-        <label class="control-label">Password: </label>
-        @Html.TextBoxFor(x => x.Password, new { size = 32 })
+
+    <div>
+        <label>Пароль:</label>
+        <input type="password" name="Password" maxlength="32" />
     </div>
 
-    <input class="button" type="submit" value="Sign In">
+
+    <div>
+        <input type="submit" value="Вход">
+    </div>
 </form>
-<a asp-controller="Home" asp-action="LogOut">LogOut</a>*@
+
+
