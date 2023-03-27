@@ -5,16 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
-using AutoMapper;
+
 
 namespace TESTINGAPP.BusinessLogic.Interfaces
 {
     public interface IUserService
     {
-        void Create(UserCreateDto userCreateDto);
+        Task CreateAsync(UserCreateDto userCreateDto);
+
 
         //List<User> GetAll();
 
-        //User Get(UserAuthDto userAuthDto);
+        //Task<User> GetAsync(UserAuthDto userAuthDto);
+        User Get(UserAuthDto userAuthDto);
     }
 }

@@ -1,9 +1,8 @@
-using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
-using TESTINGAPP.Mapper;
+
 using TESTINGAPP.Models;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +11,7 @@ builder.Services.AddDbContext<RecordContext>(options =>
 
 //Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IUserService, UserService>();
 
 //var mappingConfig = new MapperConfiguration(mc =>
 //{

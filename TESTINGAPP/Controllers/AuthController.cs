@@ -12,10 +12,11 @@ namespace TESTINGAPP.Controllers
 
         private readonly IUserService _userService;
          
-        RecordContext _recordContext;
-        public AuthController(RecordContext recordContext)
+ 
+        public AuthController(IUserService userService)
         { 
-            _recordContext = recordContext;
+            
+            _userService = userService;
         }
         public IActionResult AuthPage()
         {
@@ -26,26 +27,19 @@ namespace TESTINGAPP.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> RegPage(User model)
+        public async Task<IActionResult> RegPage(UserCreateDto model)
         {
 
+            var check = new UserAuthDto();
 
-            if (ModelState.IsValid)
+            if ( _userService.Get(check) == null)
             {
-                var user = new User
-                {
-                    Name = model.Name,
-                    Email = model.Email,
-                    Password = model.Password,
-                    Age = model.Age,
-                    Role = model.Role
-                };
+                await _userService.CreateAsync(model);
 
-                _recordContext.Users.Add(user);
-                await _recordContext.SaveChangesAsync();
-
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home");
             }
+
+            await Response.WriteAsync("Занято");
 
             return View(model);
         }

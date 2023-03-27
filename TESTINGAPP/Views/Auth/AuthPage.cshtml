@@ -1,9 +1,22 @@
-﻿<form action="/login" method="POST">
-  <label for="username">Логин:</label>
-  <input type="text" id="username" name="username"><br><br>
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
+@model TESTINGAPP.Common.Dto.UserAuthDto;
+@if (User.Identity.IsAuthenticated)
+{
+    <a @*asp-controller="Home" asp-action="GetUsers" method="Get"*@>Get Users</a>
+}
 
-  <label for="password">Пароль:</label>
-  <input type="password" id="password" name="password"><br><br>
+@*<a asp-action="CreateUser" accesskey="token">Create</a>
+<form asp-controller="Home" asp-action="Auth" method="Post">
+    <div class="form-group">
+        <label class="control-label">Email: </label>
+        @Html.TextBoxFor(x => x.Email, new { size = 32 })
+    </div>
 
-  <input type="submit" value="Войти">
+    <div class="form-group">
+        <label class="control-label">Password: </label>
+        @Html.TextBoxFor(x => x.Password, new { size = 32 })
+    </div>
+
+    <input class="button" type="submit" value="Sign In">
 </form>
+<a asp-controller="Home" asp-action="LogOut">LogOut</a>*@

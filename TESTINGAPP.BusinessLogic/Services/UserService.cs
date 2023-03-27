@@ -1,4 +1,5 @@
-﻿using AutoMapper;
+﻿
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,34 +14,49 @@ namespace TESTINGAPP.BusinessLogic.Services
     public class UserService : IUserService
     {
         private readonly RecordContext _recordContext;
-        private readonly IMapper _mapper;
 
-        public UserService(RecordContext recordContext, IMapper mapper)
+
+        public UserService(RecordContext recordContext)
         {
             _recordContext = recordContext;
-            _mapper = mapper;
+          
         }
 
-        public void Create(UserCreateDto userCreateDto)
+        public async Task CreateAsync(UserCreateDto userCreateDto)
         {
-            var user = _mapper.Map<UserCreateDto, User>(userCreateDto);
+            var user = new User
+            {
+                Name = userCreateDto.Name,
+                Email = userCreateDto.Email,
+                Password = userCreateDto.Password,
+                Age = userCreateDto.Age,
+                Role = false
+            };
 
             _recordContext.Users.Add(user);
-            _recordContext.SaveChanges();
-        }
-
-        public List<User> GetAll()
-        {
-            var users = _recordContext.Users.ToList();
-
-            return users;
+            await _recordContext.SaveChangesAsync();
+            
         }
 
         public User Get(UserAuthDto userAuthDto)
         {
             var user = _recordContext.Users.FirstOrDefault(u =>
-                u.Email == userAuthDto.Email && u.Password == userAuthDto.Password);
+                 u.Email == userAuthDto.Email && u.Password == userAuthDto.Password);
+            if (user == null)
+            {
+                return null;
+            }
+            return user;
+        }
 
+        public async Task<User> GetAsync(UserAuthDto userAuthDto)
+        {
+            var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
+                u.Email == userAuthDto.Email && u.Password == userAuthDto.Password);
+            if (user == null)
+            {
+                return null;
+            }
             return user;
         }
     }
