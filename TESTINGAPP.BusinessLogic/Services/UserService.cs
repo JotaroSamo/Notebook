@@ -38,6 +38,12 @@ namespace TESTINGAPP.BusinessLogic.Services
             
         }
 
+        public async Task<List<User>> GetAll()
+        {
+           var users = await _recordContext.Users.ToListAsync();
+            return users;
+        }
+
         public async Task<User> GetAsync(UserAuthDto userAuthDto)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>

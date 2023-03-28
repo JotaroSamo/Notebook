@@ -14,7 +14,7 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
         Task CreateAsync(UserCreateDto userCreateDto);
 
 
-        //List<User> GetAll();
+        Task<List<User>> GetAll();
 
         Task<User> GetAsync(UserAuthDto userAuthDto);
 

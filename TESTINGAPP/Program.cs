@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
 
@@ -11,6 +12,12 @@ builder.Services.AddDbContext<RecordContext>(options =>
 
 //Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddLogging(logging =>
+{
+    logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
+    logging.AddConsole();
+   
+});
 builder.Services.AddTransient<IUserService, UserService>();
 
 
