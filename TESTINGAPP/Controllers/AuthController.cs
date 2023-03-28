@@ -35,13 +35,14 @@ namespace TESTINGAPP.Controllers
         public async Task<IActionResult> RegPage(UserCreateDto model)
         {
             _logger.LogInformation("Method RegPage has been called with model {@model}.", model);
-            var check = new UserAuthDto()
+            var check = new CheckUser()
             {
                 Email=model.Email,
+                Name=model.Name
                
             };
 
-            if (await _userService.GetAsync(check) == null)
+            if (await _userService.GetCheckAsync(check) == null)
             {
                 await _userService.CreateAsync(model);
                 _logger.LogInformation("User with name {Name} and email {Email} has been created. {3}", model.Name, model.Email,DateTime.Now);

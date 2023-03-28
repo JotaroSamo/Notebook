@@ -54,5 +54,16 @@ namespace TESTINGAPP.BusinessLogic.Services
             }
             return user;
         }
+
+        public async Task<User> GetCheckAsync(CheckUser checkUser)
+        {
+            var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
+                 u.Email == checkUser.Email && u.Name == checkUser.Name);
+            if (user == null)
+            {
+                return null;
+            }
+            return user;
+        }
     }
 }
