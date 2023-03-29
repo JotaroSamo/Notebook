@@ -17,18 +17,18 @@ namespace TESTINGAPP.Controllers
             _recordContext = recordContext;
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Index(string searchString)
-        {
-            var users = from u in _recordContext.Users
-                        select u;
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
-            }
-            var userList = await users.ToListAsync();
-            return GetAllUser(userList);
-        }
+        //[HttpPost]
+        //public async Task<IActionResult> Index(string searchString)
+        //{
+        //    var users = from u in _recordContext.Users
+        //                select u;
+        //    if (!string.IsNullOrEmpty(searchString))
+        //    {
+        //        users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
+        //    }
+        //    var userList = await users.ToListAsync();
+        //    return GetAllUser(userList);
+        //}
 
        
 
@@ -56,9 +56,9 @@ namespace TESTINGAPP.Controllers
         {
             return View(await _adminService.GetAll());
         }
-        private IActionResult GetAllUser(List<User> userList)
-        {
-            return View(userList);
-        }
+        //private IActionResult GetAllUser(List<User> userList)
+        //{
+        //    return View(userList);
+        //}
     }
 }
