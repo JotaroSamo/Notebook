@@ -39,7 +39,12 @@ namespace TESTINGAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(int id)
         {
-            return View(await _adminService.GetById(id));
+            var user = await _adminService.GetById(id);
+            if (user== null)
+            {
+                return RedirectToAction("GetAllUser");
+            }
+            return View(user);
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
