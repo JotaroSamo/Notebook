@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Admin\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging" Version="7.0.0" />
   </ItemGroup>
 
@@ -14,6 +18,18 @@
     <ProjectReference Include="..\TESTINGAPP.BusinessLogic\TESTINGAPP.BusinessLogic.csproj" />
     <ProjectReference Include="..\TESTINGAPP.Common\TESTINGAPP.Common.csproj" />
     <ProjectReference Include="..\TESTINGAPP.Models\TESTINGAPP.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Admin\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Admin\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Admin\Edit.cshtml" />
   </ItemGroup>
 
 </Project>

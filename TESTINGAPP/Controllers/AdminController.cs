@@ -36,11 +36,11 @@ namespace TESTINGAPP.Controllers
         {
             return _recordContext.Users.Any(e => e.Id == id);
         }
-        //[HttpPost]
-        //public IActionResult Edit(int id)
-        //{
-        //    return View()
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id)
+        {
+            return View(await _adminService.GetById(id));
+        }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {

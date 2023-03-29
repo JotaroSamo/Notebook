@@ -1,0 +1,33 @@
+﻿@model User
+
+<h1>Edit User</h1>
+
+<form asp-controller="Admin" asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div>
+        <label asp-for="Email">Email:</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Password:</label>
+        <input type="password" asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <label asp-for="Name">Name:</label>
+        <input asp-for="Name" />
+        <span asp-validation-for="Name"></span>
+    </div>
+    <div>
+        <label asp-for="Age">Age:</label>
+        <input asp-for="Age" />
+        <span asp-validation-for="Age"></span>
+    </div>
+    <div>
+        <label asp-for="Role">Role:</label>
+        <input type="checkbox" asp-for="Role" />
+        <span asp-validation-for="Role"></span>
+    </div>
+    <button type="submit">Save</button>
+</form>
