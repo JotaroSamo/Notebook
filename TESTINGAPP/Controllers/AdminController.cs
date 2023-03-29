@@ -36,32 +36,11 @@ namespace TESTINGAPP.Controllers
         {
             return _recordContext.Users.Any(e => e.Id == id);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
-        {
-            if (id != user.Id)
-            {
-                return NotFound();
-            }
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _recordContext.Update(user);
-                    await _recordContext.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    
-
-                        return NotFound();
-                   
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(user);
-        }
+        //[HttpPost]
+        //public IActionResult Edit(int id)
+        //{
+        //    return View()
+        //}
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
