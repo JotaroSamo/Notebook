@@ -18,8 +18,8 @@ namespace TESTINGAPP.BusinessLogic.Services
 
         public async Task Delete(int id)
         {
-            var user = await _recordContext.Users.FindAsync(id);
-            _recordContext.Users.Remove(user);
+  
+            _recordContext.Users.Remove(await GetById(id));
             await _recordContext.SaveChangesAsync();
         }
 
@@ -27,6 +27,13 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
             var users = await _recordContext.Users.ToListAsync();
             return users;
+        }
+
+        public async Task<User> GetById(int id)
+        {
+            var user = await _recordContext.Users.FindAsync(id);
+
+            return user;
         }
     }
 }

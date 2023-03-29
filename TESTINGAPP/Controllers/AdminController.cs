@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TESTINGAPP.BusinessLogic.Interfaces;
+using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
 
 namespace TESTINGAPP.Controllers
@@ -16,17 +17,65 @@ namespace TESTINGAPP.Controllers
             _recordContext = recordContext;
         }
 
-        public async Task<IActionResult> GetAllUser()
+        [HttpPost]
+        public async Task<IActionResult> Index(string searchString)
         {
-            return View(await _adminService.GetAll());
+            var users = from u in _recordContext.Users
+                        select u;
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
+            }
+            var userList = await users.ToListAsync();
+            return GetAllUser(userList);
         }
 
+       
+
+        private bool UserExists(int id)
+        {
+            return _recordContext.Users.Any(e => e.Id == id);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    _recordContext.Update(user);
+                    await _recordContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    
+
+                        return NotFound();
+                   
+                }
+                return RedirectToAction(nameof(Index));
+            }
+            return View(user);
+        }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
            
             await _adminService.Delete(id);
             return RedirectToAction("GetAllUser");
+        }
+        public async Task<IActionResult> GetAllUser()
+        {
+            return View(await _adminService.GetAll());
+        }
+        private IActionResult GetAllUser(List<User> userList)
+        {
+            return View(userList);
         }
     }
 }

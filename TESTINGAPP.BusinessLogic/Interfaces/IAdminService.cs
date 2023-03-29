@@ -11,5 +11,6 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
     {
         Task<List<User>> GetAll();
         Task Delete(int id);
+        Task<User> GetById(int id);
     }
 }
