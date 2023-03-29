@@ -49,7 +49,6 @@ namespace TESTINGAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
-           
             await _adminService.Delete(id);
             return RedirectToAction("GetAllUser");
         }

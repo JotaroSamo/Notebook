@@ -20,21 +20,25 @@
     <tbody>
         @foreach (var user in Model)
         {
-            <tr>
-                <td>@user.Id</td>
-                <td>@user.Name</td>
-                <td>@user.Email</td>
-                <td>
-                    <form asp-controller="Admin" asp-action="Delete" method="post">
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <button type="submit">Delete</button>
-                    </form>
-                    <form asp-controller="Admin" asp-action="Edit" method="post">
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <button type="submit">Edit</button>
-                    </form>
-                </td>
-            </tr>
+            if (user.Role!= true)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit">Delete</button>
+                        </form>
+                        <form asp-controller="Admin" asp-action="Edit" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit">Edit</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+       
         }
     </tbody>
 </table>
