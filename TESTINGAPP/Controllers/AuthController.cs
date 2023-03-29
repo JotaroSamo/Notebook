@@ -73,18 +73,21 @@ namespace TESTINGAPP.Controllers
 
                 //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
                 //    new ClaimsPrincipal(claimIdentity));
+             
+                if (user.Role == true) 
+                {
+                    _logger.LogInformation($"{DateTime.Now}: Admin with {userAuthDto.Email} is log in");
+                    return RedirectToAction("GetAllUser", "Admin");
+                   
+                }
                 _logger.LogInformation($"{DateTime.Now}: user with {userAuthDto.Email} is log in");
-
-                return RedirectToAction("GetAllUser");
+                return RedirectToAction("Index", "Home");
             }
 
             _logger.LogWarning("User with email {Email} has failed authentication.", userAuthDto.Email);
             return View(userAuthDto);
         }
        
-        public async Task<IActionResult> GetAllUser()
-        {
-            return View(await _userService.GetAll());
-        }
+    
     }
 }

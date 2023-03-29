@@ -38,11 +38,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             
         }
 
-        public async Task<List<User>> GetAll()
-        {
-           var users = await _recordContext.Users.ToListAsync();
-            return users;
-        }
+       
 
         public async Task<User> GetAsync(UserAuthDto userAuthDto)
         {
@@ -58,7 +54,7 @@ namespace TESTINGAPP.BusinessLogic.Services
         public async Task<User> GetCheckAsync(CheckUser checkUser)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
-                 u.Email == checkUser.Email && u.Name == checkUser.Name);
+                 u.Email == checkUser.Email || u.Name == checkUser.Name);
             if (user == null)
             {
                 return null;

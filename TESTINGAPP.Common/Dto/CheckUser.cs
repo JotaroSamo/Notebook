@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace TESTINGAPP.Common.Dto
 {
-    internal class CheckUser
+   public class CheckUser
     {
+        public string Email { get; set; }
+
+        public string Name { get; set; }
+
     }
 }

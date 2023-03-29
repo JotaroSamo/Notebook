@@ -19,6 +19,7 @@ builder.Services.AddLogging(logging =>
    
 });
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAdminService, AdminService>();
 
 
 var app = builder.Build();

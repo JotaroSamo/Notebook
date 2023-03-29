@@ -1,20 +1,32 @@
 ﻿@model List<User>;
-<table class="table">
-    <tr>
-        <th>Id</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Name</th>
-        <th>Age</th>
-    </tr>
-    @foreach (var item in Model)
-    {
+<link href="~/css/site.css" rel="stylesheet" />
+<table>
+    <thead>
         <tr>
-            <td>@Html.DisplayFor(modelItem => item.Id)</td>
-            <td>@Html.DisplayFor(modelItem => item.Email)</td>
-            <td>@Html.DisplayFor(modelItem => item.Password)</td>
-            <td>@Html.DisplayFor(modelItem => item.Name)</td>
-            <td>@Html.DisplayFor(modelItem => item.Age)</td>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Actions</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var user in Model)
+        {
+            if (user.Role != true)
+            {
+                <tr>
+                    <td>@user.Id</td>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>
+                        <form asp-controller="Admin" asp-action="Delete" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            
+        }
+    </tbody>
 </table>
