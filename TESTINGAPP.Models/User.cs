@@ -22,6 +22,6 @@ namespace TESTINGAPP.Models
 
         public bool Role { get; set; }
 
-        public List<Record> Records { get; set; }
+        public List<Record>? Records { get; set; }
     }
 }

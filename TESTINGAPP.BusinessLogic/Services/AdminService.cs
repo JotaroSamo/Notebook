@@ -32,15 +32,16 @@ namespace TESTINGAPP.BusinessLogic.Services
         public async Task<User> GetById(int id)
         {
             var user = await _recordContext.Users.FindAsync(id);
-
+            
             return user;
         }
 
         public async Task<List<User>> SearchAsync(string searchString)
         {
+
             var users = from u in _recordContext.Users
                         select u;
-           
+          
                 users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
            
             var userList = await users.ToListAsync();

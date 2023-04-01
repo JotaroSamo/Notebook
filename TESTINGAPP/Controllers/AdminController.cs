@@ -43,7 +43,7 @@ namespace TESTINGAPP.Controllers
             try
             {
                 await _adminService.UpdateUser(user);
-                _logger.LogInformation($"User with ID {user.Id} has been updated.");
+                _logger.LogInformation($"{DateTime.Now} User with ID {user.Id} has been updated.");
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -59,14 +59,14 @@ namespace TESTINGAPP.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             await _adminService.Delete(id);
-            _logger.LogInformation($"User with ID {id} has been deleted.");
+            _logger.LogInformation($"{DateTime.Now} User with ID {id} has been deleted.");
             return RedirectToAction("GetAllUser");
         }
 
         public async Task<IActionResult> GetAllUser()
         {
             var users = await _adminService.GetAll();
-            _logger.LogInformation($"Retrieved {users.Count()} users.");
+            _logger.LogInformation($"{DateTime.Now} Retrieved {users.Count()} users.");
             return View(users);
         }
 

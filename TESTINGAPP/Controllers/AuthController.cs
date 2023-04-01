@@ -23,26 +23,21 @@ namespace TESTINGAPP.Controllers
 
         public IActionResult AuthPage()
         {
-            _logger.LogInformation("Method AuthPage has been called.");
+            _logger.LogInformation($"{DateTime.Now} Method AuthPage has been called.");
             return View();
         }
         public IActionResult RegPage()
         {
-            _logger.LogInformation("Method AuthPage has been called.");
+            _logger.LogInformation($"{DateTime.Now} Method AuthPage has been called.");
             return View();
         }
         [HttpPost]
         public async Task<IActionResult> RegPage(UserCreateDto model)
         {
-            _logger.LogInformation("Method RegPage has been called with model {@model}.", model);
-            var check = new CheckUser()
-            {
-                Email=model.Email,
-                Name=model.Name
-               
-            };
+            _logger.LogInformation($"{DateTime.Now} Method RegPage has been called with model {@model}.", model);
+            
 
-            if (await _userService.GetCheckAsync(check) == null)
+            if (await _userService.GetCheckAsync(_userService.Maping(model)) == null)
             {
                 await _userService.CreateAsync(model);
                 _logger.LogInformation("User with name {Name} and email {Email} has been created. {3}", model.Name, model.Email,DateTime.Now);
@@ -50,7 +45,7 @@ namespace TESTINGAPP.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            _logger.LogWarning("User with email {Email} already exists.", model.Email);
+            _logger.LogWarning("User with email {Email} already exists. {2}", model.Email, DateTime.Now);
 
             return View(model);
         }
@@ -58,7 +53,7 @@ namespace TESTINGAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> Auth(UserAuthDto userAuthDto)
         {
-            _logger.LogInformation("Method Auth has been called with model {@userAuthDto}.", userAuthDto);
+            _logger.LogInformation("Method Auth has been called with model {@userAuthDto}. {3}", userAuthDto, DateTime.Now );
 
             var user = await _userService.GetAsync(userAuthDto);
 

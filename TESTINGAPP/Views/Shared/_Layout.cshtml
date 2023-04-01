@@ -1,21 +1,25 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-   <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/site.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Записная книжка</title>
-    <div class="container">
-    <a asp-area="" asp-controller="Auth" asp-action="AuthPage">Log in</a>
-        <a asp-area="" asp-controller="Auth" asp-action="RegPage">Sing up</a>
-          <a asp-area="" asp-controller="WorkPages" asp-action="AddRecord">Add Record</a>
-        <a asp-area="" asp-controller="Admin" asp-action="GetAllUser">Get all</a>
-    </div>
+  
 </head>
 <body>
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container">
+        <div>
+            <a asp-area="" asp-controller="Auth" asp-action="AuthPage">Log in</a>
+            <a asp-area="" asp-controller="Auth" asp-action="RegPage">Sing up</a>
+            <a asp-area="" asp-controller="WorkPages" asp-action="AddRecord">Add Record</a>
+        </div>
+        <div>
+            <a asp-area="" asp-controller="Admin" asp-action="GetAllUser">Get all</a>
+        </div>
     </div>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
 
     <footer class="border-top footer text-muted">
         <div class="container">

@@ -1,111 +1,92 @@
-/* Базовый размер шрифта */
-html {
-    font-size: 16px;
+/* Общие стили для всех элементов */
+* {
+    font-family: "Roboto Mono", monospace;
+    color: #fff;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    transition: all 0.2s ease-in-out;
 }
 
-/* Медиа-запрос для увеличения размера шрифта на больших экранах */
-@media (min-width: 768px) {
-    html {
-        font-size: 18px;
+/* Стили для заголовков */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* Стили для ссылок */
+a {
+    text-decoration: none;
+    color: #ff0080;
+    border-bottom: 1px solid #ff0080;
+    transition: all 0.2s ease-in-out;
+}
+
+    a:hover {
+        color: #fff;
+        background-color: #ff0080;
     }
+
+/* Стили для кнопок */
+button, input[type="submit"] {
+    background-color: #ff0080;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-/* Установка полной высоты для html-элемента */
-html {
-    position: relative;
-    min-height: 100%;
-}
+    button:hover, input[type="submit"]:hover {
+        background-color: #fff;
+        color: #ff0080;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    }
 
-/* Шрифт по умолчанию для body-элемента */
-body {
-    font-family: Arial, sans-serif;
-}
-
-/* Стиль для заголовков первого уровня */
-h1 {
-    text-align: center;
-    margin-top: 30px;
-}
-
-/* Стиль для формы */
+/* Стили для форм */
 form {
-    margin: 0 auto;
-    width: 80%;
-    max-width: 600px;
+    margin: 20px 0;
 }
 
-/* Стиль для меток (лейблов) */
 label {
     display: block;
-    margin-top: 10px;
+    margin-bottom: 5px;
     font-weight: bold;
 }
 
-/* Стиль для текстовых полей, полей ввода пароля, поля ввода почты и URL */
-input[type="text"],
-input[type="password"],
-input[type="email"],
-input[type="url"],
-textarea {
+input[type="text"], input[type="password"], select, textarea {
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-/* Стиль для поля ввода файла */
-input[type="file"] {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    margin-bottom: 15px;
-    box-sizing: border-box;
-}
-
-/* Стиль для кнопки отправки формы */
-input[type="submit"] {
-    background-color: #4CAF50;
-    color: white;
-    padding: 12px 20px;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    float: right;
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
 }
 
-    /* Стиль при наведении на кнопку отправки формы */
-    input[type="submit"]:hover {
-        background-color: #45a049;
+    input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
+        outline: none;
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
     }
 
-.table {
+/* Стили для таблиц */
+table {
     border-collapse: collapse;
+    margin: 20px 0;
     width: 100%;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
 }
 
-    .table th, .table td {
-        padding: 8px;
-        text-align: left;
-        vertical-align: top;
-        border: 1px solid #ddd;
-    }
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #fff;
+}
 
-    .table th {
-        background-color: #f2f2f2;
-        font-weight: bold;
-        color: #333;
-    }
+th {
+    background-color: #ff0080;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-    .table tr:nth-child(even) {
-        background-color: #f9f9f9;
-    }
-
-    .table tr:hover {
-        background-color: #f2f2f2;
-    }
-
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

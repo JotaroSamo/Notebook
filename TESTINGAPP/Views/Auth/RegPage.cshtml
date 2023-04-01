@@ -3,7 +3,7 @@
 <form method="post" asp-action="RegPage" asp-controller="Auth">
     <div>
         <label>Имя пользователя:</label>
-        <input type="text" name="Name" maxlength="32" />
+        <input type="text" name="Name" maxlength="32" min="5" />
     </div>
    
     <div>
@@ -14,12 +14,12 @@
 
     <div>
         <label>Пароль:</label>
-        <input type="password" name="Password" maxlength="32" />
+        <input type="password" name="Password" maxlength="32" min="12" />
     </div>
    
     <div>
     <label>Возраст:</label>
-        <input type="text" name="Age" maxlength="32" />
+        <input type="text" name="Age" maxlength="3" min="1" />
     </div>
     <div>
         <input type="submit" value="Регестрация">

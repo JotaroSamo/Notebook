@@ -61,5 +61,16 @@ namespace TESTINGAPP.BusinessLogic.Services
             }
             return user;
         }
+
+        public CheckUser Maping(UserCreateDto model)
+        {
+            var check = new CheckUser()
+            {
+                Email = model.Email,
+                Name = model.Name
+
+            };
+            return check;
+        }
     }
 }

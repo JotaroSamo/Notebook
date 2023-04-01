@@ -1,20 +1,38 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@model List<Record>
 <link href="~/css/site.css" rel="stylesheet" />
-<table>
-  <tr>
-    <th>Заголовок 1</th>
-    <th>Заголовок 2</th>
-  </tr>
-  <tr>
-    <td>Ячейка 1</td>
-    <td>Ячейка 2</td>
-  </tr>
-  <tr>
-    <td>Ячейка 3</td>
-    <td>Ячейка 4</td>
-  </tr>
+<h2>My Records</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Categories</th>
+            <th>Url</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var record in Model)
+        {
+            <tr>
+                <td>@record.Date.ToShortDateString()</td>
+                <td>@record.Title</td>
+                <td>@record.Description</td>
+                <td>@record.Categories</td>
+                <td>@record.Url</td>
+                <td>
+                    <form asp-action="DeleteRecord" asp-controller="Record" method="post">
+                        <input type="hidden" name="id" value="@record.Id" />
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    <form asp-action="EditRecord" asp-controller="Record" method="get">
+                        <input type="hidden" name="id" value="@record.Id" />
+                        <button type="submit" class="btn btn-primary">Edit</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>

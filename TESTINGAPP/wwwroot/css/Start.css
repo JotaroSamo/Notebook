@@ -1,0 +1,60 @@
+/* Базовый размер шрифта */
+html {
+    font-size: 16px;
+}
+
+/* Медиа-запрос для увеличения размера шрифта на больших экранах */
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+
+/* Установка полной высоты для html-элемента */
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/* Шрифт по умолчанию для body-элемента */
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color:darkgrey;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+    .container a {
+        text-decoration: none;
+        color: black;
+        margin-left: 20px;
+        font-size: 18px;
+    }
+
+        .container a:hover {
+            color: yellowgreen;
+        }
+
+.footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+    .footer a {
+        text-decoration: none;
+        color: black;
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+        .footer a:hover {
+            color: #007bff;
+        }
+
