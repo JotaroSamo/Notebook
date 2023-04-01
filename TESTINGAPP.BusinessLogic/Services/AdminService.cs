@@ -35,5 +35,22 @@ namespace TESTINGAPP.BusinessLogic.Services
 
             return user;
         }
+
+        public async Task<List<User>> SearchAsync(string searchString)
+        {
+            var users = from u in _recordContext.Users
+                        select u;
+           
+                users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
+           
+            var userList = await users.ToListAsync();
+            return userList;
+        }
+
+        public async Task UpdateUser(User user)
+        {
+            _recordContext.Update(user);
+            await _recordContext.SaveChangesAsync();
+        }
     }
 }

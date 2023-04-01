@@ -17,27 +17,15 @@ namespace TESTINGAPP.Controllers
             _recordContext = recordContext;
         }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Index(string searchString)
-        //{
-        //    var users = from u in _recordContext.Users
-        //                select u;
-        //    if (!string.IsNullOrEmpty(searchString))
-        //    {
-        //        users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
-        //    }
-        //    var userList = await users.ToListAsync();
-        //    return GetAllUser(userList);
-        //}
 
-       
+
 
         private bool UserExists(int id)
         {
             return _recordContext.Users.Any(e => e.Id == id);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> EditUser(int id)
         {
             var user = await _adminService.GetById(id);
             if (user== null)
@@ -45,6 +33,33 @@ namespace TESTINGAPP.Controllers
                 return NotFound();
             }
             return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+           
+                try
+                {
+                     await  _adminService.UpdateUser(user);
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("GetAllUser");
+       
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -84,9 +99,20 @@ namespace TESTINGAPP.Controllers
         {
             return View(await _adminService.GetAll());
         }
-        //private IActionResult GetAllUser(List<User> userList)
-        //{
-        //    return View(userList);
-        //}
+        [HttpPost]
+        public async Task<IActionResult> SearchUser(string searchString)
+
+        {
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var user = await _adminService.SearchAsync(searchString);
+                if (user == null) 
+                {
+                    return RedirectToAction("GetAllUser");
+                }
+                return View(user);
+            }
+            return RedirectToAction("GetAllUser");
+        }
     }
 }

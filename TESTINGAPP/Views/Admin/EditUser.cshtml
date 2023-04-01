@@ -2,7 +2,7 @@
 
 <h1>Edit User</h1>
 
-<form asp-controller="Admin" asp-action="EditDo" method="post">
+<form asp-controller="Admin" asp-action="Edit" method="post">
     <input type="hidden" asp-for="Id" />
     <div>
         <label asp-for="Email">Email:</label>
@@ -11,7 +11,7 @@
     </div>
     <div>
         <label asp-for="Password">Password:</label>
-        <input type="password" asp-for="Password" />
+        <input asp-for="Password" />
         <span asp-validation-for="Password"></span>
     </div>
     <div>
