@@ -14,18 +14,19 @@
             <th>ID</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Role</th>
             <th>Actions</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var user in Model)
         {
-            if (user.Role!= true)
-            {
+           
                 <tr>
                     <td>@user.Id</td>
                     <td>@user.Name</td>
                     <td>@user.Email</td>
+                    <td>@user.Role</td>
                     <td>
                         <form asp-controller="Admin" asp-action="Delete" method="post">
                             <input type="hidden" name="id" value="@user.Id" />
@@ -37,7 +38,7 @@
                         </form>
                     </td>
                 </tr>
-            }
+            
        
         }
     </tbody>

@@ -42,9 +42,37 @@ namespace TESTINGAPP.Controllers
             var user = await _adminService.GetById(id);
             if (user== null)
             {
-                return RedirectToAction("GetAllUser");
+                return NotFound();
             }
             return View(user);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EditDo(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
+        {
+            if (id != user.Id)
+            {
+                return NotFound();
+            }
+           
+                try
+                {
+                    _recordContext.Update(user);
+                    await _recordContext.SaveChangesAsync();
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!UserExists(user.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                return RedirectToAction("Index","Home");
+       
         }
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
