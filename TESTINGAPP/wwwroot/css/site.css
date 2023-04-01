@@ -1,92 +1,115 @@
-/* Общие стили для всех элементов */
-* {
-    font-family: "Roboto Mono", monospace;
-    color: #fff;
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
-    transition: all 0.2s ease-in-out;
+/* Базовый размер шрифта */
+html {
+    font-size: 16px;
 }
 
-/* Стили для заголовков */
-h1, h2, h3, h4, h5, h6 {
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* Стили для ссылок */
-a {
-    text-decoration: none;
-    color: #ff0080;
-    border-bottom: 1px solid #ff0080;
-    transition: all 0.2s ease-in-out;
-}
-
-    a:hover {
-        color: #fff;
-        background-color: #ff0080;
+/* Медиа-запрос для увеличения размера шрифта на больших экранах */
+@media (min-width: 768px) {
+    html {
+        font-size: 18px;
     }
-
-/* Стили для кнопок */
-button, input[type="submit"] {
-    background-color: #ff0080;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-    button:hover, input[type="submit"]:hover {
-        background-color: #fff;
-        color: #ff0080;
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    }
-
-/* Стили для форм */
-form {
-    margin: 20px 0;
+/* Установка полной высоты для html-элемента */
+html {
+    position: relative;
+    min-height: 100%;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+/* Шрифт по умолчанию для body-элемента */
+body {
+    font-family: Arial, sans-serif;
 }
 
-input[type="text"], input[type="password"], select, textarea {
-    width: 100%;
+/* стиль для всех input */
+input {
+    justify-content: center;
     padding: 10px;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    font-size: 16px;
+    width: auto;
+    margin: auto;
 }
 
-    input[type="text"]:focus, input[type="password"]:focus, select:focus, textarea:focus {
-        outline: none;
-        box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    }
+/* стиль для всех кнопок */
+button {
+   justify-content: center;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    width: auto;
+    margin: auto;
+}
 
-/* Стили для таблиц */
+/* стиль для всех таблиц */
 table {
     border-collapse: collapse;
-    margin: 20px 0;
     width: 100%;
+    max-width: auto;
+    margin: auto;
 }
 
-th, td {
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+        font-size: 16px;
+    }
+.del {
+    background-color: red;
+}
+    .del a:hover {
+        color:darkred;
+    }
+.edit {
+    background-color:grey
+}
+.edit a:hover {
+    color:dimgray;
+}
+    table th {
+        background-color: #007bff;
+        color: #fff;
+    }
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: darkgrey;
     padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid #fff;
+    background-color: #f8f9fa;
 }
 
-th {
-    background-color: #ff0080;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    .container a {
+        text-decoration: none;
+        color: black;
+        margin-left: 20px;
+        font-size: 18px;
+    }
+
+        .container a:hover {
+            color: yellowgreen;
+        }
+
+.footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f8f9fa;
 }
 
-tr:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
+    .footer a {
+        text-decoration: none;
+        color: black;
+        margin-left: 20px;
+        font-size: 14px;
+    }
+
+        .footer a:hover {
+            color: #007bff;
+        }

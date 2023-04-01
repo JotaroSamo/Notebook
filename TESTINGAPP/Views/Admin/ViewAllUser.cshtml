@@ -30,11 +30,12 @@
                     <td>
                         <form asp-controller="Admin" asp-action="Delete" method="post">
                             <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit">Delete</button>
+                            <button type="submit" class="del">Delete</button>
                         </form>
+                        <br/>
                         <form asp-controller="Admin" asp-action="EditUser" method="post">
                             <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit">Edit</button>
+                            <button type="submit" class="edit">Edit</button>
                         </form>
                     </td>
                 </tr>

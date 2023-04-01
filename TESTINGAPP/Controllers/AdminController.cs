@@ -48,8 +48,8 @@ namespace TESTINGAPP.Controllers
             catch (DbUpdateConcurrencyException)
             {
 
-                    return NotFound();
-           
+                return NotFound();
+
             }
             return RedirectToAction("GetAllUser");
         }
@@ -62,12 +62,19 @@ namespace TESTINGAPP.Controllers
             _logger.LogInformation($"{DateTime.Now} User with ID {id} has been deleted.");
             return RedirectToAction("GetAllUser");
         }
-
+        [HttpGet]
         public async Task<IActionResult> GetAllUser()
         {
-            var users = await _adminService.GetAll();
-            _logger.LogInformation($"{DateTime.Now} Retrieved {users.Count()} users.");
-            return View(users);
+
+                var user = await _adminService.GetAll();
+                _logger.LogInformation($"{DateTime.Now} Retrieved {user.Count()} users.");
+            return View("ViewAllUser", user);
+
+        }
+       
+        public IActionResult ViewAllUser(List<User> user)
+        {
+            return View(user);
         }
 
         [HttpPost]
@@ -80,7 +87,7 @@ namespace TESTINGAPP.Controllers
                 {
                     return RedirectToAction("GetAllUser");
                 }
-                return View(user);
+               return View("ViewAllUser", user);
             }
             return RedirectToAction("GetAllUser");
         }

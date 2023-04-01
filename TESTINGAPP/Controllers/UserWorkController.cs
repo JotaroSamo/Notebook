@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace TESTINGAPP.Controllers
 {
-    public class WorkPagesController : Controller
+    public class UserWorkController : Controller
     {
         public IActionResult AddRecord()
         {
