@@ -3,21 +3,28 @@
 <h1>Записная книжка</h1>
 <form action="" method="post">
     <div>
-        <label for="note">Заметка:</label>
-        <textarea id="note" name="note" placeholder="Введите заметку"></textarea>
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date">
     </div>
     <div>
-        <label for="note">Изображение:</label>
-        <input type="file" id="img" name="img" placeholder="Добавьте изображение">
+        <label for="title">Название:</label>
+        <input type="text" id="title" name="title">
     </div>
     <div>
-        <label for="note">Категория:</label>
-        <select id="cat" name="cat">
-        </select>
+        <label for="description">Описание:</label>
+        <textarea id="description" name="description"></textarea>
     </div>
     <div>
-        <label for="note">Ссылка:</label>
-        <input type="url" id="url" name="url" placeholder="Ссылка">
+        <label for="categories">Категории:</label>
+        <input type="text" id="categories" name="categories">
+    </div>
+    <div>
+        <label for="url">Ссылка:</label>
+        <input type="url" id="url" name="url">
+    </div>
+    <div>
+        <label for="photo">Фотография:</label>
+        <input type="file" id="photo" name="photo">
     </div>
     <div>
         <input type="submit" value="Добавить">
