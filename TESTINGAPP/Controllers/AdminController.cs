@@ -74,9 +74,13 @@ namespace TESTINGAPP.Controllers
        
         public IActionResult ViewAllUser(List<User> user)
         {
-            var users = await _adminService.GetAll();
-            _logger.LogInformation($"Retrieved {users.Count()} users.");
-            return View(users);
+
+            return View(user);
+        }
+        public IActionResult Tools()
+        {
+
+            return View();
         }
 
         [HttpPost]

@@ -20,21 +20,72 @@ html {
 body {
     font-family: Arial, sans-serif;
 }
+/* Стиль для таблицы */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 1440px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
 
-/* стиль для всех input */
-input {
-    justify-content: center;
+    table th, table td {
+        border: 1px solid #ccc;
+        padding: 10px;
+        text-align: left;
+    }
+
+    table th {
+        background-color: #f2f2f2;
+        color: #444;
+    }
+
+/* Стиль для формы */
+form {
+    margin: 20px auto;
+    width: 100%;
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 16px;
-    width: auto;
-    margin: auto;
+    margin-bottom: 20px;
 }
 
-/* стиль для всех кнопок */
-button {
-   justify-content: center;
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    background-color: #fff;
+}
+div {
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f7f7f7;
+    box-shadow: 1px 1px 3px #ccc;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    color: #333;
+}
+input[type="submit"] {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
@@ -42,23 +93,21 @@ button {
     color: #fff;
     font-size: 16px;
     cursor: pointer;
-    width: auto;
-    margin: auto;
 }
 
-/* стиль для всех таблиц */
-table {
-    border-collapse: collapse;
-    width: 100%;
-    max-width: auto;
-    margin: auto;
+/* Стиль для кнопок */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
 }
 
-    table th, table td {
-        border: 1px solid #ccc;
-        padding: 10px;
-        text-align: left;
-        font-size: 16px;
+    button:hover {
+        background-color: #0056b3;
     }
 .del {
     background-color: red;
@@ -72,44 +121,4 @@ table {
 .edit a:hover {
     color:dimgray;
 }
-    table th {
-        background-color: #007bff;
-        color: #fff;
-    }
 
-.container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: darkgrey;
-    padding: 10px;
-    background-color: #f8f9fa;
-}
-
-    .container a {
-        text-decoration: none;
-        color: black;
-        margin-left: 20px;
-        font-size: 18px;
-    }
-
-        .container a:hover {
-            color: yellowgreen;
-        }
-
-.footer {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #f8f9fa;
-}
-
-    .footer a {
-        text-decoration: none;
-        color: black;
-        margin-left: 20px;
-        font-size: 14px;
-    }
-
-        .footer a:hover {
-            color: #007bff;
-        }

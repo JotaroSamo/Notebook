@@ -1,5 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
 @model TESTINGAPP.Common.Dto.UserAuthDto;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/css/site.css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Записная книжка</title>
+</head>
+<body>
 <link href="~/css/site.css" rel="stylesheet" />
 @if (User.Identity.IsAuthenticated)
 {
@@ -25,5 +33,7 @@
         <input type="submit" value="Вход">
     </div>
 </form>
+</body>
+</html>
 
 

@@ -72,7 +72,7 @@ namespace TESTINGAPP.Controllers
                 if (user.Role == true) 
                 {
                     _logger.LogInformation($"{DateTime.Now}: Admin with {userAuthDto.Email} is log in");
-                    return RedirectToAction("GetAllUser", "Admin");
+                    return RedirectToAction("Tools", "Admin");
                    
                 }
                 _logger.LogInformation($"{DateTime.Now}: user with {userAuthDto.Email} is log in");
