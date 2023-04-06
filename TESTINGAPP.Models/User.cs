@@ -20,7 +20,7 @@ namespace TESTINGAPP.Models
 
         public string Age { get; set; }
 
-        public bool Role { get; set; }
+        public string Role { get; set; }
 
         public List<Record>? Records { get; set; }
     }

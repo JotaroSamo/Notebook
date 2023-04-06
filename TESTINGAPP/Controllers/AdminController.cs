@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
@@ -11,13 +13,13 @@ namespace TESTINGAPP.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IAdminService _adminService;
-        private readonly RecordContext _recordContext;
+        //private readonly RecordContext _recordContext;
 
         public AdminController(ILogger<AdminController> logger, IAdminService adminService, RecordContext recordContext)
         {
             _logger = logger;
             _adminService = adminService;
-            _recordContext = recordContext;
+            //_recordContext = recordContext;
         }
 
         [HttpPost]
@@ -77,6 +79,7 @@ namespace TESTINGAPP.Controllers
 
             return View(user);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Tools()
         {
 

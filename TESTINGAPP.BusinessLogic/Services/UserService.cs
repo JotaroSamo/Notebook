@@ -30,7 +30,7 @@ namespace TESTINGAPP.BusinessLogic.Services
                 Email = userCreateDto.Email,
                 Password = userCreateDto.Password,
                 Age = userCreateDto.Age,
-                Role = false
+                Role = "User"
             };
 
             _recordContext.Users.Add(user);

@@ -49,40 +49,37 @@ namespace TESTINGAPP.Controllers
 
             return View(model);
         }
-
         [HttpPost]
         public async Task<IActionResult> Auth(UserAuthDto userAuthDto)
         {
-            _logger.LogInformation("Method Auth has been called with model {@userAuthDto}. {3}", userAuthDto, DateTime.Now );
-
             var user = await _userService.GetAsync(userAuthDto);
-
-            if (user != null)
+            if (user == null)
             {
-                var claims = new List<Claim>()
-        {
-            new Claim(ClaimTypes.Name, user.Name),
-            new Claim(ClaimTypes.Email, user.Email)
-        };
-                //var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-
-                //await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                //    new ClaimsPrincipal(claimIdentity));
-             
-                if (user.Role == true) 
-                {
-                    _logger.LogInformation($"{DateTime.Now}: Admin with {userAuthDto.Email} is log in");
-                    return RedirectToAction("Tools", "Admin");
-                   
-                }
-                _logger.LogInformation($"{DateTime.Now}: user with {userAuthDto.Email} is log in");
-                return RedirectToAction("Index", "Home");
+                _logger.LogWarning("Failed login attempt for user {userAuthDto.Email} at {DateTime.Now}", userAuthDto.Email, DateTime.Now);
+                return RedirectToAction("RegPage");
             }
 
-            _logger.LogWarning("User with email {Email} has failed authentication.", userAuthDto.Email);
-            return View(userAuthDto);
+            var claims = new List<Claim>()
+    {
+        new Claim(ClaimTypes.Name, user.Name),
+        new Claim(ClaimTypes.Email, user.Email),
+        new Claim(ClaimTypes.Role, user.Role)
+    };
+
+            if (user.Role == "Admin")
+            {
+                _logger.LogInformation("Admin with email {userAuthDto.Email} has logged in at {DateTime.Now}", userAuthDto.Email, DateTime.Now);
+                var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimIdentity));
+                return RedirectToAction("Tools", "Admin");
+            }
+
+            _logger.LogInformation("User with email {userAuthDto.Email} has logged in at {DateTime.Now}", userAuthDto.Email, DateTime.Now);
+            var userClaimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userClaimsIdentity));
+            return RedirectToAction("Index", "Home");
         }
-       
-    
+
+
     }
 }

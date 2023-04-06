@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -20,8 +21,8 @@ builder.Services.AddLogging(logging =>
 });
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAdminService, AdminService>();
-
-
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
+builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
