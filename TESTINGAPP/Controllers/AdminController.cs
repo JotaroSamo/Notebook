@@ -83,7 +83,6 @@ namespace TESTINGAPP.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Tools()
         {
-            string a = ClaimTypes.Name;
             return View();
         }
 
