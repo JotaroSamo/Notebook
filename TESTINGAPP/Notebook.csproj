@@ -12,9 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TESTINGAPP.BusinessLogic\TESTINGAPP.BusinessLogic.csproj" />
-    <ProjectReference Include="..\TESTINGAPP.Common\TESTINGAPP.Common.csproj" />
-    <ProjectReference Include="..\TESTINGAPP.Models\TESTINGAPP.Models.csproj" />
+    <ProjectReference Include="..\TESTINGAPP.BusinessLogic\Notebook.BusinessLogic.csproj" />
+    <ProjectReference Include="..\TESTINGAPP.Common\Notebook.Common.csproj" />
+    <ProjectReference Include="..\TESTINGAPP.Models\Notebook.Models.csproj" />
   </ItemGroup>
 
 </Project>
