@@ -23,6 +23,12 @@ builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddTransient<IAdminService, AdminService>();
 builder.Services.AddTransient<IRecordService, RecordService>();
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 var app = builder.Build();
@@ -45,5 +51,5 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.UseSession();
 app.Run();

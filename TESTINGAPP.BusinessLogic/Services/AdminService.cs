@@ -18,8 +18,10 @@ namespace TESTINGAPP.BusinessLogic.Services
 
         public async Task Delete(int id)
         {
-  
-            _recordContext.Users.Remove(await GetById(id));
+            var recordsToRemove = _recordContext.Records.Where(c => c.UserId == id).ToList();
+            _recordContext.Records.RemoveRange(recordsToRemove);
+            var userToRemove = await _recordContext.Users.FindAsync(id);
+            _recordContext.Users.Remove(userToRemove);
             await _recordContext.SaveChangesAsync();
         }
 

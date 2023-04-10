@@ -46,6 +46,11 @@
                             <input type="hidden" name="id" value="@user.Id" />
                             <button type="submit" class="edit">Edit</button>
                         </form>
+                        <br />
+                        <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
+                            <input type="hidden" name="UserId" value="@user.Id" />
+                            <button type="submit">List Record</button>
+                        </form>
                     </td>
                 </tr>
             

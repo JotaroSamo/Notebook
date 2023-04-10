@@ -10,6 +10,7 @@
             <th>Description</th>
             <th>Categories</th>
             <th>Url</th>
+            <th>Img</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -17,16 +18,23 @@
         @foreach (var record in Model)
         {
             <tr>
+                <td>@record.Date</td>
                 <td>@record.Title</td>
                 <td>@record.Description</td>
                 <td>@record.Categories</td>
                 <td>@record.Url</td>
                 <td>
-                    <form asp-action="DeleteRecord" asp-controller="Record" method="post">
+                    @if (record.Photo != null)
+                    {
+                        <img style="max-height: 300px; max-width: 200px;" src="data:image/png;base64,@Convert.ToBase64String(record.Photo)" alt="Record photo" />
+                    }
+                </td>
+                <td>
+                    <form asp-action="DeleteRecord" asp-controller="UserWork" method="get">
                         <input type="hidden" name="id" value="@record.Id" />
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <form asp-action="EditRecord" asp-controller="Record" method="get">
+                    <form asp-action="EditRecord" asp-controller="UserWork" method="get">
                         <input type="hidden" name="id" value="@record.Id" />
                         <button type="submit" class="btn btn-primary">Edit</button>
                     </form>

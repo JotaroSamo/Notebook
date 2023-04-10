@@ -14,13 +14,14 @@ namespace TESTINGAPP.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IAdminService _adminService;
-        //private readonly RecordContext _recordContext;
+      
 
-        public AdminController(ILogger<AdminController> logger, IAdminService adminService, RecordContext recordContext)
+        public AdminController(ILogger<AdminController> logger, IAdminService adminService)
         {
             _logger = logger;
             _adminService = adminService;
-            //_recordContext = recordContext;
+        
+
         }
         [HttpPost]
         public async Task<IActionResult> EditUser(int id)

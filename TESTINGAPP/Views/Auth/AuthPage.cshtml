@@ -8,12 +8,6 @@
     <title>Записная книжка</title>
 </head>
 <body>
-<link href="~/css/site.css" rel="stylesheet" />
-@if (User.Identity.IsAuthenticated)
-{
-    <a @*asp-controller="Home" asp-action="GetUsers" method="Get"*@>Get Users</a>
-}
-
 <form method="post" asp-action="Auth" asp-controller="Auth">
  
 

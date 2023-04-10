@@ -20,9 +20,9 @@ namespace TESTINGAPP.BusinessLogic.Services
             _recordContext = recordContext;
 
         }
-        public Task<List<Record>> AllRecord(int id)
+        public async Task<List<Record>> AllRecord(int UserId)
         {
-            throw new NotImplementedException();
+            return await _recordContext.Records.Where(c => c.UserId == UserId).ToListAsync();
         }
 
         public async Task RecordCreate(RecordCreateDto record, int id)
@@ -49,10 +49,10 @@ namespace TESTINGAPP.BusinessLogic.Services
           
         }
 
-        public async Task DelateRecord(int id)
+        public async Task DeleteRecord(int id)
         {
-           _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c=> c.Id==id));
-          await _recordContext.SaveChangesAsync();
+            _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
+            await _recordContext.SaveChangesAsync();
         }
 
         public async Task EditRecord(Record record)

@@ -11,9 +11,9 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
 {
    public interface IRecordService
     {
-        Task<List<Record>> AllRecord(int id);
+        Task<List<Record>> AllRecord(int UserId);
         Task RecordCreate(RecordCreateDto record, int id);
-        Task DelateRecord(int id);
+        Task DeleteRecord(int id);
         Task EditRecord(Record record);
     }
 }
