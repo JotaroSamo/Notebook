@@ -22,15 +22,17 @@ namespace TESTINGAPP.Controllers
             _adminService = adminService;
             //_recordContext = recordContext;
         }
-
         [HttpPost]
         public async Task<IActionResult> EditUser(int id)
         {
+            _logger.LogInformation($"Trying to edit user with id {id}");
             var user = await _adminService.GetById(id);
             if (user == null)
             {
+                _logger.LogInformation($"User with id {id} not found");
                 return NotFound();
             }
+            _logger.LogInformation($"User with id {id} found");
             return View(user);
         }
 
@@ -40,6 +42,7 @@ namespace TESTINGAPP.Controllers
         {
             if (id != user.Id)
             {
+                _logger.LogInformation($"Update failed: user id {id} doesn't match the updated user id {user.Id}");
                 return NotFound();
             }
 
@@ -50,31 +53,38 @@ namespace TESTINGAPP.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-
+                _logger.LogInformation($"Update failed: user with id {user.Id} not found");
                 return NotFound();
-
             }
+
+            _logger.LogInformation($"User with id {user.Id} updated");
             return RedirectToAction("GetAllUser");
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Delete(int id)
         {
             await _adminService.Delete(id);
-            _logger.LogInformation($"{DateTime.Now} User with ID {id} has been deleted.");
+            _logger.LogInformation($"User with ID {id} has been deleted.");
             return RedirectToAction("GetAllUser");
         }
+ 
         [HttpGet]
         public async Task<IActionResult> GetAllUser()
         {
-
-                var user = await _adminService.GetAll();
-                _logger.LogInformation($"{DateTime.Now} Retrieved {user.Count()} users.");
-            return View("ViewAllUser", user);
-
+            try
+            {
+                var users = await _adminService.GetAll();
+                _logger.LogInformation($"Retrieved {users.Count()} users.");
+                return View("ViewAllUser", users);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, $"Error occurred while retrieving users: {ex.Message}");
+                throw;
+            }
         }
-       
+
         public IActionResult ViewAllUser(List<User> user)
         {
 
@@ -94,9 +104,11 @@ namespace TESTINGAPP.Controllers
                 var user = await _adminService.SearchAsync(searchString);
                 if (user == null)
                 {
+                    _logger.LogInformation($"No users found for search query {searchString}");
                     return RedirectToAction("GetAllUser");
                 }
-               return View("ViewAllUser", user);
+                _logger.LogInformation($"Retrieved {user.Count()} users for search query {searchString}");
+                return View("ViewAllUser", user);
             }
             return RedirectToAction("GetAllUser");
         }
