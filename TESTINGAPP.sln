@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTINGAPP", "TESTINGAPP\TESTINGAPP.csproj", "{A91217A5-31BA-47C7-9B9F-BC3C084D689A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook", "TESTINGAPP\Notebook.csproj", "{A91217A5-31BA-47C7-9B9F-BC3C084D689A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTINGAPP.Models", "TESTINGAPP.Models\TESTINGAPP.Models.csproj", "{39AF93AB-BA39-42CF-AC37-E1E839AE3E43}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook.Models", "TESTINGAPP.Models\Notebook.Models.csproj", "{39AF93AB-BA39-42CF-AC37-E1E839AE3E43}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTINGAPP.Common", "TESTINGAPP.Common\TESTINGAPP.Common.csproj", "{CF57DE7F-1F05-45EF-B622-DD094E0F39B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook.Common", "TESTINGAPP.Common\Notebook.Common.csproj", "{CF57DE7F-1F05-45EF-B622-DD094E0F39B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TESTINGAPP.BusinessLogic", "TESTINGAPP.BusinessLogic\TESTINGAPP.BusinessLogic.csproj", "{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook.BusinessLogic", "TESTINGAPP.BusinessLogic\Notebook.BusinessLogic.csproj", "{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

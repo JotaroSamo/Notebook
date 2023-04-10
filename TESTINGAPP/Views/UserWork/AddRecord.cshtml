@@ -1,7 +1,7 @@
 ﻿
 <link href="~/css/site.css" rel="stylesheet" />
 <h1>Записная книжка</h1>
-<form asp-action="Create" asp-controller="UserWork" method="post">
+<form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
     <div>
         <label for="title">Название:</label>
         <input type="text" id="title" name="title">

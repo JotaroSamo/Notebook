@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 using TESTINGAPP.Common.Dto;
 using TESTINGAPP.BusinessLogic.Interfaces;
+using Microsoft.AspNetCore.Authorization;
+
 namespace TESTINGAPP.Controllers
 {
     public class UserWorkController : Controller
@@ -15,15 +17,18 @@ namespace TESTINGAPP.Controllers
             _recordService = recodService;
      
         }
+        [Authorize]
         public IActionResult UserTools()
         {
        
             return View();
         }
+        [Authorize]
         public IActionResult AddRecord()
         {
             return View();
         }
+        [Authorize]
         public IActionResult AllRecord()
         {
             return View();

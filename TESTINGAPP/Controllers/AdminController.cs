@@ -38,6 +38,7 @@ namespace TESTINGAPP.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
         {
             if (id != user.Id)
@@ -62,6 +63,7 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _adminService.Delete(id);
@@ -70,6 +72,7 @@ namespace TESTINGAPP.Controllers
         }
  
         [HttpGet]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUser()
         {
             try
@@ -84,13 +87,14 @@ namespace TESTINGAPP.Controllers
                 throw;
             }
         }
-
+        [Authorize(Roles = "Admin")]
         public IActionResult ViewAllUser(List<User> user)
         {
 
             return View(user);
         }
         [Authorize(Roles = "Admin")]
+       
         public IActionResult Tools()
         {
             return View();
