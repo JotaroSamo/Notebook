@@ -1,28 +1,40 @@
 ﻿
-<link href="~/css/site.css" rel="stylesheet" />
-<h1>Записная книжка</h1>
-<form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
-    <div>
-        <label for="title">Название:</label>
-        <input type="text" id="title" name="title">
-    </div>
-    <div>
-        <label for="description">Описание:</label>
-        <textarea id="description" name="description"></textarea>
-    </div>
-    <div>
-        <label for="categories">Категории:</label>
-        <input type="text" id="categories" name="categories">
-    </div>
-    <div>
-        <label for="url">Ссылка:</label>
-        <input type="url" id="url" name="url">
-    </div>
-    <div>
-        <label for="photo">Фотография:</label>
-        <input type="file" id="Photo" name="Photo" accept="image/*">
-    </div>
-    <div>
-        <input type="submit" value="Добавить">
-    </div>
-</form>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/css/Record Add.css" rel="stylesheet" />
+    <title>Записная книжка</title>
+</head>
+<body>
+    <h1>Записная книжка</h1>
+    <form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="title">Название:</label>
+            <input type="text" id="title" name="title">
+        </div>
+        <div>
+            <label for="description">Описание:</label>
+            <textarea id="description" name="description"></textarea>
+        </div>
+        <div>
+            <label for="categories">Категории:</label>
+            <input type="text" id="categories" name="categories">
+        </div>
+        <div>
+            <label for="url">Ссылка:</label>
+            <input type="url" id="url" name="url">
+        </div>
+        <div>
+            <label for="photo">Фотография:</label>
+            <input type="file" id="Photo" name="Photo" accept="image/*">
+        </div>
+        <div>
+            <input type="submit" value="Добавить">
+        </div>
+    </form>
+</body>
+</html>

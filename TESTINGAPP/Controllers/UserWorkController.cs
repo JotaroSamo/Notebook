@@ -30,12 +30,12 @@ namespace TESTINGAPP.Controllers
         {
             return View();
         }
-        [HttpGet]
-        public async Task<IActionResult> AllRecord(int UserId)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> AllRecord(int UserId)
+        //{
 
-            return View(await _recordService.AllRecord(UserId));
-        }
+        //    return View(await _recordService.AllRecord(UserId));
+        //}
         [Authorize]
         public async Task<IActionResult> AllRecord()
         {

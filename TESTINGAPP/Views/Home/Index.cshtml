@@ -1,21 +1,23 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="~/css/site.css" rel="stylesheet">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="./css/Index.css" rel="stylesheet" type="text/css">
     <title>Записная книжка</title>
-   
 </head>
 <body>
     <h1>Записная книжка</h1>
     <div class="container">
+
         <div>
-            <a asp-area="" asp-controller="Auth" asp-action="AuthPage">Log in</a>
+            <a href="/auth/authpage">Log in</a>
         </div>
+
         <div>
-            <a asp-area="" asp-controller="Auth" asp-action="RegPage">Sing up</a>
+            <a href="/auth/regpage">Sing up</a>
         </div>
     </div>
 </body>

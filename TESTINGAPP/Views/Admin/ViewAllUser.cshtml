@@ -2,62 +2,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="~/css/site.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Записная книжка</title>
-    <a asp-area="" asp-controller="Home" asp-action="Index">Log out</a>
+    <link href="~/css/site.css" rel="stylesheet">
 </head>
 <body>
-<link href="~/css/site.css" rel="stylesheet" />
-<form asp-controller="Admin" asp-action="SearchUser" method="post">
-    <div class="text">
-        <input type="search" class="form-control" name="searchString" placeholder="Search...">
-    </div>
-    <div class="input">
-        <button type="submit" class="btn btn-primary">Search</button>
-    </div>
-</form>
-<table class="table">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Role</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
-           
+    <header>
+        <a asp-area="" asp-controller="Home" asp-action="Index">Log out</a>
+    </header>
+
+    <main>
+        <form asp-controller="Admin" asp-action="SearchUser" method="post">
+            <div class="search-container">
+                <input type="search" class="form-control" name="searchString" placeholder="Search...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <table class="table">
+            <thead>
                 <tr>
-                    <td>@user.Id</td>
-                    <td>@user.Name</td>
-                    <td>@user.Email</td>
-                    <td>@user.Role</td>
-                    <td>
-                        <form asp-controller="Admin" asp-action="Delete" method="post">
-                            <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit" class="del">Delete</button>
-                        </form>
-                        <br/>
-                        <form asp-controller="Admin" asp-action="EditUser" method="post">
-                            <input type="hidden" name="id" value="@user.Id" />
-                            <button type="submit" class="edit">Edit</button>
-                        </form>
-                        <br />
-                        <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
-                            <input type="hidden" name="UserId" value="@user.Id" />
-                            <button type="submit">List Record</button>
-                        </form>
-                    </td>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Actions</th>
                 </tr>
-            
-       
-        }
-    </tbody>
-</table>
+            </thead>
+            <tbody>
+                @foreach (var user in Model)
+                {
+                    <tr>
+                        <td>@user.Id</td>
+                        <td>@user.Name</td>
+                        <td>@user.Email</td>
+                        <td>@user.Role</td>
+                        <td>
+                            <form asp-controller="Admin" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+
+                            <form asp-controller="Admin" asp-action="EditUser" method="post">
+                                <input type="hidden" name="id" value="@user.Id" />
+                                <button type="submit" class="btn btn-warning">Edit</button>
+                            </form>
+
+                            <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
+                                <input type="hidden" name="UserId" value="@user.Id" />
+                                <button type="submit" class="btn btn-info">List Record</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </main>
+
+    <footer>
+        <p>Copyright © 2023</p>
+    </footer>
 </body>
 </html>
 

@@ -1,23 +1,32 @@
-﻿<html>
+﻿<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Администраторские инструменты</title>
+    <link href="~/css/tools.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Администраторские инструменты</h1>
+    <header>
+        <h1>Администраторские инструменты</h1>
+    </header>
+
     <nav>
         <ul>
-            <li>  <a asp-area="" method="get" asp-controller="Admin" asp-action="GetAllUser">View all Users</a></li>
+            <li><a asp-area="" method="get" asp-controller="Admin" asp-action="GetAllUser">Просмотр всех пользователей</a></li>
+           
+           
+           
         </ul>
-    </nav>
-    <nav>
         <ul>
-            <li>  <a asp-area="" asp-controller="UserWork" asp-action="AllRecord">List Record</a></li>
+            <li><a asp-area="" asp-controller="UserWork" asp-action="AllRecord">Список записей</a></li>
         </ul>
-    </nav>
-    <nav>
         <ul>
-            <li>  <a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a></li>
+            <li><a asp-area="" asp-controller="UserWork" asp-action="AddRecord">Добавить запись</a></li>
         </ul>
     </nav>
+
+    <footer>
+        <p>&copy; 2023 Все права защищены</p>
+    </footer>
 </body>
 </html>

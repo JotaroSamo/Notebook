@@ -3,31 +3,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="~/css/site.css" rel="stylesheet">
+    <link href="~/css/login.css" rel="stylesheet">
     <meta charset="UTF-8">
     <title>Записная книжка</title>
 </head>
 <body>
-<form method="post" asp-action="Auth" asp-controller="Auth">
- 
-
-    <div>
-        <label>Почта:</label>
-        <input type="email" name="Email" maxlength="32" />
-    </div>
-
-
-    <div>
-        <label>Пароль:</label>
-        <input type="password" name="Password" maxlength="32" />
-    </div>
-
-
-    <div>
-        <input type="submit" value="Вход">
-    </div>
-</form>
+    <form method="post" asp-action="Auth" asp-controller="Auth">
+        <div>
+            <label>Почта:</label>
+            <input type="email" name="Email" maxlength="32" />
+        </div>
+        <div>
+            <label>Пароль:</label>
+            <input type="password" name="Password" maxlength="32" />
+        </div>
+        <div>
+            <input type="submit" value="Вход">
+        </div>
+    </form>
 </body>
 </html>
+
+
+
+
 
 
