@@ -77,7 +77,7 @@ namespace TESTINGAPP.Controllers
             _logger.LogInformation("User with email {userAuthDto.Email} has logged in at {DateTime.Now}", userAuthDto.Email, DateTime.Now);
             var userClaimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(userClaimsIdentity));
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("UserTools", "UserWork");
         }
 
 

@@ -10,7 +10,6 @@ namespace TESTINGAPP.Common.Dto
     public class RecordCreateDto
     {
         
-        public int Id { get; set; } // идентификационный номер записи
         public DateTime Date { get; set; } // дата
         public string Title { get; set; } // название
         public string Description { get; set; } // описание

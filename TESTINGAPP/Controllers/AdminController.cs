@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
+using System.Security.Claims;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
@@ -82,7 +83,7 @@ namespace TESTINGAPP.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Tools()
         {
-
+            string a = ClaimTypes.Name;
             return View();
         }
 
