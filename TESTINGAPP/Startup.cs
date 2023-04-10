@@ -20,7 +20,9 @@ builder.Services.AddLogging(logging =>
    
 });
 builder.Services.AddTransient<IUserService, UserService>();
+
 builder.Services.AddTransient<IAdminService, AdminService>();
+builder.Services.AddTransient<IRecordService, RecordService>();
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
 var app = builder.Build();

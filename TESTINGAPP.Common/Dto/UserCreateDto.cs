@@ -19,6 +19,5 @@ namespace TESTINGAPP.Common.Dto
         public string Age { get; set; }
 
         public string Role { get; set; }
-        public List<Record> Records { get; set; }
     }
 }

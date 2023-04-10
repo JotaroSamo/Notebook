@@ -1,11 +1,7 @@
 ﻿
 <link href="~/css/site.css" rel="stylesheet" />
 <h1>Записная книжка</h1>
-<form action="" method="post">
-    <div>
-        <label for="date">Дата:</label>
-        <input type="date" id="date" name="date">
-    </div>
+<form asp-action="Create" asp-controller="UserWork" method="post">
     <div>
         <label for="title">Название:</label>
         <input type="text" id="title" name="title">
@@ -24,7 +20,7 @@
     </div>
     <div>
         <label for="photo">Фотография:</label>
-        <input type="file" id="photo" name="photo" accept="image/*">
+        <input type="file" id="Photo" name="Photo" accept="image/*">
     </div>
     <div>
         <input type="submit" value="Добавить">

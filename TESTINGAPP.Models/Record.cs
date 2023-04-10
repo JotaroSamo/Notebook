@@ -17,5 +17,7 @@ namespace TESTINGAPP.Models
         public string? Categories { get; set; } // категории
         public string? Url { get; set; } // ссылки
         public byte[]? Photo { get; set; } // фотография
+
+        public int UserId { get; set; } // id пользователя
     }
 }
