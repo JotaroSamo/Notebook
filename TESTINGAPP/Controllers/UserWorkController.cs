@@ -5,6 +5,7 @@ using TESTINGAPP.Common.Dto;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using TESTINGAPP.Models;
+using TESTINGAPP.BusinessLogic.Services;
 
 namespace TESTINGAPP.Controllers
 {
@@ -30,20 +31,19 @@ namespace TESTINGAPP.Controllers
         {
             return View();
         }
-        //[HttpGet]
-        //public async Task<IActionResult> AllRecord(int UserId)
-        //{
-
-        //    return View(await _recordService.AllRecord(UserId));
-        //}
-        [Authorize]
-        public async Task<IActionResult> AllRecord()
+        public async Task<IActionResult> GetListUserdRecordAsync()
         {
-            int UserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+            int UserId =  HttpContext.Session.GetInt32("UserId") ?? 0;
             if (UserId == 0)
             {
                 return NotFound();
             }
+            return View("AllRecord", await _recordService.AllRecord(UserId));
+        }
+        [HttpGet]
+        [Authorize]
+        public async Task<IActionResult> AllRecord(int UserId)
+        {
             return View(await _recordService.AllRecord(UserId));
         }
         [HttpPost]
@@ -57,7 +57,7 @@ namespace TESTINGAPP.Controllers
                     return NotFound();
                 }
                 await _recordService.RecordCreate(model, UserId);
-                return RedirectToAction("AllRecord");
+                return View("AllRecord", UserId);
             }
             catch (Exception)
             {
@@ -70,9 +70,24 @@ namespace TESTINGAPP.Controllers
         [HttpGet]
         public async Task<IActionResult> DeleteRecord(int id)
         {
-           await _recordService.DeleteRecord(id);
-            return RedirectToAction("AllRecord");
+            await _recordService.DeleteRecord(id);
+            return await GetListUserdRecordAsync();
         }
-
+        [HttpPost]
+        public async Task<IActionResult> SearchRecord(string searchString)
+        {
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                var records = await _recordService.SearchAsync(searchString);
+                if (records == null)
+                {
+                    _logger.LogInformation($"No users found for search query {searchString}");
+                    return RedirectToAction("GetAllUser");
+                }
+                _logger.LogInformation($"Retrieved {records.Count()} users for search query {searchString}");
+                return View("AllRecord", records);
+            }
+            return await GetListUserdRecordAsync();
+        }
     }
 }

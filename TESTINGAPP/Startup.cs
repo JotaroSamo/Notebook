@@ -4,8 +4,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
-
 using TESTINGAPP.Models;
+using Karambolo.Extensions.Logging.File;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RecordContext>(options =>
@@ -13,12 +14,11 @@ builder.Services.AddDbContext<RecordContext>(options =>
 
 //Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddLogging(logging =>
-{
-    logging.AddConfiguration(builder.Configuration.GetSection("Logging"));
-    logging.AddConsole();
-   
-});
+var logger = new LoggerConfiguration()
+    .MinimumLevel.Information()
+    .WriteTo.File(builder.Configuration["Logging:File:Path"].ToString(), rollingInterval: RollingInterval.Day).
+    CreateLogger();
+builder.Logging.AddSerilog(logger);
 builder.Services.AddTransient<IUserService, UserService>();
 
 builder.Services.AddTransient<IAdminService, AdminService>();

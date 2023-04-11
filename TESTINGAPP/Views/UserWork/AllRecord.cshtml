@@ -5,8 +5,15 @@
 <head>
     <title>My Table</title>
     <link href="~/css/site.css" rel="stylesheet" />
+    <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
+    <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
+        <div class="search-container">
+            <input type="search" class="form-control" name="searchString" placeholder="Search...">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </form>
     <table class="table">
         <thead>
             <tr>

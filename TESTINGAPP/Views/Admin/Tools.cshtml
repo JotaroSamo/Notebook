@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Администраторские инструменты</title>
     <link href="~/css/tools.css" rel="stylesheet">
+    <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
     <header>
@@ -13,16 +14,8 @@
     <nav>
         <ul>
             <li><a asp-area="" method="get" asp-controller="Admin" asp-action="GetAllUser">Просмотр всех пользователей</a></li>
-           
-           
-           
         </ul>
-        <ul>
-            <li><a asp-area="" asp-controller="UserWork" asp-action="AllRecord">Список записей</a></li>
-        </ul>
-        <ul>
-            <li><a asp-area="" asp-controller="UserWork" asp-action="AddRecord">Добавить запись</a></li>
-        </ul>
+
     </nav>
 
     <footer>

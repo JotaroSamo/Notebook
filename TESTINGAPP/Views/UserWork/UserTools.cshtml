@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<title>Выбор инструмента</title>
 	<link href="~/css/tools.css" rel="stylesheet">
+	<a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
+	
 	<div class="container">
 		<div>
-			<a asp-area="" asp-controller="UserWork" asp-action="AllRecord">List Record</a>
+			<a asp-area="" asp-controller="UserWork" asp-action="GetListUserdRecord">List Record</a>
 		</div>
 		<div>
 			<a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>

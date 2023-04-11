@@ -15,5 +15,6 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
         Task RecordCreate(RecordCreateDto record, int id);
         Task DeleteRecord(int id);
         Task EditRecord(Record record);
+        Task<List<Record>> SearchAsync(string searchString);
     }
 }
