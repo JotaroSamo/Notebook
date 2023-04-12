@@ -23,7 +23,9 @@ namespace TESTINGAPP.Controllers
         [Authorize]
         public IActionResult UserTools()
         {
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             return View();
         }
         [Authorize]

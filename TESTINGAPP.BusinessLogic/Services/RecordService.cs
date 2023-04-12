@@ -44,7 +44,9 @@ namespace TESTINGAPP.BusinessLogic.Services
         
         public async Task DeleteRecord(int id)
         {
+#pragma warning disable CS8634 // Тип не может быть использован как параметр типа в универсальном типе или методе. Допустимость значения NULL для аргумента типа не соответствует ограничению "class".
             _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
+#pragma warning restore CS8634 // Тип не может быть использован как параметр типа в универсальном типе или методе. Допустимость значения NULL для аргумента типа не соответствует ограничению "class".
             await _recordContext.SaveChangesAsync();
         }
 
@@ -61,6 +63,7 @@ namespace TESTINGAPP.BusinessLogic.Services
         }
         private async Task<Record> MappingInRecord(RecordCreateDto record, int id)
         {
+#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             var rec = new Record()
             {
                 Date = DateTime.Now,
@@ -72,13 +75,18 @@ namespace TESTINGAPP.BusinessLogic.Services
                 FileName = record.Photo.FileName,
                 UserId = id
             };
+#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             return rec;
         }
+#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         private async Task<IFormFile> ConvertToIFormFile(byte[] bytes, string fileName)
+#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
         {
             if (bytes == null)
             {
+#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
                 return null;
+#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
             }
 
             var ms = new MemoryStream(bytes);
@@ -94,7 +102,9 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
             if (file == null)
             {
+#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
                 return null;
+#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
             }
 
             using (var stream = new MemoryStream())
@@ -109,7 +119,15 @@ namespace TESTINGAPP.BusinessLogic.Services
             var record = from u in _recordContext.Records
                         select u;
 
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
             record = record.Where(u => u.Title.Contains(searchString) || u.Categories.Contains(searchString)|| u.Url.Contains(searchString)|| u.Description.Contains(searchString));
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
+#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
 
             var recordList = await record.ToListAsync();
             return recordList;
