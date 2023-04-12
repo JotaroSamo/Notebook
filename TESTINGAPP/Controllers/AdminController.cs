@@ -52,15 +52,15 @@ namespace TESTINGAPP.Controllers
             {
                 await _adminService.UpdateUser(user);
                 _logger.LogInformation($"{DateTime.Now} User with ID {user.Id} has been updated.");
+                return RedirectToAction("GetAllUser");
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException ex)
             {
-                _logger.LogInformation($"Update failed: user with id {user.Id} not found");
-                return NotFound();
+                _logger.LogError(ex, $"Error occurred while updating user with id {user.Id}: {ex.Message}");
+                ModelState.AddModelError("", "The user has been updated by another user. Please refresh and try again.");
+                return View("EditUser", user);
             }
-
-            _logger.LogInformation($"User with id {user.Id} updated");
-            return RedirectToAction("GetAllUser");
+          
         }
 
         [HttpPost]

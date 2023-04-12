@@ -53,8 +53,10 @@
                             <input type="hidden" name="id" value="@record.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
+                        <br/>
                         <form asp-action="EditRecord" asp-controller="UserWork" method="get">
                             <input type="hidden" name="id" value="@record.Id" />
+                            <input type="hidden" name="UserId" value="@record.UserId" />
                             <button type="submit" class="btn btn-primary">Edit</button>
                         </form>
                     </td>

@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualBasic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,29 +40,64 @@ namespace TESTINGAPP.BusinessLogic.Services
           
         }
 
-        
+
         public async Task DeleteRecord(int id)
         {
-#pragma warning disable CS8634 // Тип не может быть использован как параметр типа в универсальном типе или методе. Допустимость значения NULL для аргумента типа не соответствует ограничению "class".
-            _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
-#pragma warning restore CS8634 // Тип не может быть использован как параметр типа в универсальном типе или методе. Допустимость значения NULL для аргумента типа не соответствует ограничению "class".
-            await _recordContext.SaveChangesAsync();
-        }
 
-        public async Task EditRecord(RecordCreateDto record, int id)
+            _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
+            _recordContext.SaveChangesAsync();
+        }
+        public async Task<RecordCreateDto> GetRecordById(int id)
+        {
+            return await MappingInRecordCreateDto(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
+        }
+        public async Task EditRecord(RecordCreateDto record, int id, int UserId)
         {
             if (record != null)
             {
 
-                var rec = await MappingInRecord(record, id);
+                var rec = await MappingInRecordEdit(record, id, UserId);
                 _recordContext.Records.Update(rec);
                 await _recordContext.SaveChangesAsync();
             }
            
         }
+        private async Task<RecordCreateDto> MappingInRecordCreateDto(Record record)
+        {
+            var rec = new RecordCreateDto()
+            {
+                Title = record.Title,
+                Description = record.Description,
+                Categories = record.Categories,
+                Url = record.Url
+            };
+
+            return rec;
+        }
+        private async Task<Record> MappingInRecordEdit(RecordCreateDto record, int id, int UserId)
+        {
+
+            var rec = new Record()
+            {
+                Id = id,
+                Date = DateTime.Now,
+                Title = record.Title,
+                Description = record.Description,
+                Categories = record.Categories,
+                Url = record.Url,
+                FileName = record.Photo?.FileName,
+                UserId= UserId
+            };
+            if (record.Photo != null)
+            {
+                rec.Photo = await ConvertToByteArray(record.Photo);
+            }
+
+            return rec;
+        }
         private async Task<Record> MappingInRecord(RecordCreateDto record, int id)
         {
-#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
+
             var rec = new Record()
             {
                 Date = DateTime.Now,
@@ -71,40 +105,24 @@ namespace TESTINGAPP.BusinessLogic.Services
                 Description = record.Description,
                 Categories = record.Categories,
                 Url = record.Url,
-                Photo = await ConvertToByteArray(record.Photo),
-                FileName = record.Photo.FileName,
+                FileName = record.Photo?.FileName,
                 UserId = id
             };
-#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
-            return rec;
-        }
-#pragma warning disable CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
-        private async Task<IFormFile> ConvertToIFormFile(byte[] bytes, string fileName)
-#pragma warning restore CS1998 // В асинхронном методе отсутствуют операторы await, будет выполнен синхронный метод
-        {
-            if (bytes == null)
+            if (record.Photo!=null)
             {
-#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
-                return null;
-#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+                rec.Photo = await ConvertToByteArray(record.Photo);
             }
 
-            var ms = new MemoryStream(bytes);
-            var formFile = new FormFile(ms, 0, ms.Length, null, fileName)
-            {
-                Headers = new HeaderDictionary(),
-                ContentType = "application/octet-stream",
-            };
-
-            return formFile;
+            return rec;
         }
+
+       
         private async Task<byte[]> ConvertToByteArray(IFormFile file)
         {
             if (file == null)
             {
-#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
                 return null;
-#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+
             }
 
             using (var stream = new MemoryStream())
