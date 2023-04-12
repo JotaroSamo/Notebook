@@ -45,7 +45,7 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
 
             _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
-            _recordContext.SaveChangesAsync();
+            _recordContext.SaveChanges();
         }
         public async Task<RecordCreateDto> GetRecordById(int id)
         {
@@ -58,7 +58,7 @@ namespace TESTINGAPP.BusinessLogic.Services
 
                 var rec = await MappingInRecordEdit(record, id, UserId);
                 _recordContext.Records.Update(rec);
-                await _recordContext.SaveChangesAsync();
+                _recordContext.SaveChanges();
             }
            
         }
