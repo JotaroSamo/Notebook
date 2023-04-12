@@ -5,7 +5,6 @@ using Microsoft.Extensions.Logging;
 using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
 using TESTINGAPP.Models;
-using Karambolo.Extensions.Logging.File;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

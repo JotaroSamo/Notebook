@@ -6,8 +6,15 @@
     <title>My Table</title>
     <link href="~/css/site.css" rel="stylesheet" />
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
+    }
 </head>
 <body>
+    <div>
+        <a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
+    </div>
     <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
         <div class="search-container">
             <input type="search" class="form-control" name="searchString" placeholder="Search...">

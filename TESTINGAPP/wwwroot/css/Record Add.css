@@ -93,3 +93,14 @@ input[type="submit"] {
     margin-top: -15px;
     margin-bottom: 10px;
 }
+a {
+    text-decoration: none;
+    color: #333;
+    background-color: #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+    a:hover {
+        background-color: #ccc;
+    }

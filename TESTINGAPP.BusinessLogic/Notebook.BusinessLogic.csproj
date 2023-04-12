@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TESTINGAPP.Common\Notebook.Common.csproj" />
     <ProjectReference Include="..\TESTINGAPP.Models\Notebook.Models.csproj" />
   </ItemGroup>

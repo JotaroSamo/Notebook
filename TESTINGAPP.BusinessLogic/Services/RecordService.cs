@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System;
@@ -30,18 +31,9 @@ namespace TESTINGAPP.BusinessLogic.Services
 
             if (record!= null)
             {
-                var rec = new Record()
-                {
-                    Date = DateTime.Now,
-                    Title = record.Title,
-                    Description = record.Description,
-                    Categories = record.Categories,
-                    Url = record.Url,
-                    Photo = await ConvertToByteArray(record.Photo),
-                    UserId = id
-                };
 
-                _recordContext.Records.Add(rec);
+                var rec = await MappingInRecord(record, id);
+                 _recordContext.Records.Add(rec);
                 await _recordContext.SaveChangesAsync();
             }
           
@@ -49,16 +41,54 @@ namespace TESTINGAPP.BusinessLogic.Services
           
         }
 
+        
         public async Task DeleteRecord(int id)
         {
             _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
             await _recordContext.SaveChangesAsync();
         }
 
-        public async Task EditRecord(Record record)
+        public async Task EditRecord(RecordCreateDto record, int id)
         {
-            _recordContext.Records.Update(record);
-            await _recordContext.SaveChangesAsync();
+            if (record != null)
+            {
+
+                var rec = await MappingInRecord(record, id);
+                _recordContext.Records.Update(rec);
+                await _recordContext.SaveChangesAsync();
+            }
+           
+        }
+        private async Task<Record> MappingInRecord(RecordCreateDto record, int id)
+        {
+            var rec = new Record()
+            {
+                Date = DateTime.Now,
+                Title = record.Title,
+                Description = record.Description,
+                Categories = record.Categories,
+                Url = record.Url,
+                Photo = await ConvertToByteArray(record.Photo),
+                FileName = record.Photo.FileName,
+                UserId = id
+            };
+            return rec;
+        }
+        private async Task<IFormFile> ConvertToIFormFile(byte[] bytes, string fileName)
+        {
+            if (bytes == null)
+            {
+                return null;
+            }
+
+            var ms = new MemoryStream(bytes);
+            var formFile = new FormFile(ms, 0, ms.Length, null, fileName)
+            {
+                Headers = new HeaderDictionary(),
+                ContentType = "application/octet-stream",
+            };
+
+            return formFile;
         }
         private async Task<byte[]> ConvertToByteArray(IFormFile file)
         {

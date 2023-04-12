@@ -57,7 +57,7 @@ namespace TESTINGAPP.Controllers
                     return NotFound();
                 }
                 await _recordService.RecordCreate(model, UserId);
-                return View("AllRecord", UserId);
+                return await GetListUserdRecordAsync();
             }
             catch (Exception)
             {

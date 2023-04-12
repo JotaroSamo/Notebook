@@ -10,14 +10,14 @@ namespace TESTINGAPP.Models
     public class Record
     {
         [Key]
-        public int Id { get; set; } // идентификационный номер записи
-        public DateTime Date { get; set; } // дата
-        public string? Title { get; set; } // название
-        public string? Description { get; set; } // описание
-        public string? Categories { get; set; } // категории
-        public string? Url { get; set; } // ссылки
-        public byte[]? Photo { get; set; } // фотография
-
-        public int UserId { get; set; } // id пользователя
+        public int Id { get; set; } 
+        public DateTime Date { get; set; } 
+        public string? Title { get; set; } 
+        public string? Description { get; set; } 
+        public string? Categories { get; set; } 
+        public string? Url { get; set; } 
+        public byte[]? Photo { get; set; } 
+        public string FileName { get; set; }
+        public int UserId { get; set; } 
     }
 }
