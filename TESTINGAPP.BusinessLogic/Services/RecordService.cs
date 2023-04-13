@@ -145,15 +145,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             var record = from u in _recordContext.Records
                         select u;
 
-#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning disable CS8602 // Разыменование вероятной пустой ссылки.
             record = record.Where(u => u.Title.Contains(searchString) || u.Categories.Contains(searchString)|| u.Url.Contains(searchString)|| u.Description.Contains(searchString));
-#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
-#pragma warning restore CS8602 // Разыменование вероятной пустой ссылки.
 
             var recordList = await record.ToListAsync();
             return recordList;
