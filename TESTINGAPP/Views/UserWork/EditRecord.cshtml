@@ -9,7 +9,7 @@
 <body>
     <div class="container">
         <h2>Edit Record</h2>
-        <form asp-action="SaveEditRecord" asp-controller="UserWork" method="post" enctype="multipart/form-data">
+        <form asp-action="SaveEditRecordAsync" asp-controller="UserWork" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="@ViewData["Id"]" />
             <input type="hidden" name="UserId" value="@ViewData["UserId"]" />
             <div>
