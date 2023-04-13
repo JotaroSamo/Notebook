@@ -36,6 +36,10 @@ namespace TESTINGAPP.Controllers
         {
             try
             {
+                if (await _userService.CheckNull(model)==false)
+                {
+                    return View(model);
+                }
                 _logger.LogInformation($"{DateTime.Now} Method RegPage has been called with model {@model}.", model);
 
                 if (await _userService.GetCheckAsync(_userService.Maping(model)) == null)

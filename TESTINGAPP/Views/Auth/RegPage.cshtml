@@ -7,7 +7,19 @@
     <title>Записная книжка</title>
 </head>
 <body>
+  
+    
 <form method="post" asp-action="RegPage" asp-controller="Auth">
+        @try
+        {
+            if (string.IsNullOrEmpty(Model.Email) || string.IsNullOrEmpty(Model.Password) || string.IsNullOrEmpty(Model.Name) || string.IsNullOrEmpty(Model.Age))
+            {
+                <h2>Введите все данные!!!</h2>
+            }
+        }
+        catch (Exception)
+        {
+        }
     <div>
         <label>Имя пользователя:</label>
         <input type="text" name="Name" maxlength="32" min="5" />

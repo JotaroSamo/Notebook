@@ -22,6 +22,15 @@ namespace TESTINGAPP.BusinessLogic.Services
           
         }
 
+        public async Task<bool> CheckNull(UserCreateDto model)
+        {
+            if (string.IsNullOrEmpty(model.Email) || string.IsNullOrEmpty(model.Password) || string.IsNullOrEmpty(model.Name) || string.IsNullOrEmpty(model.Age))
+            {
+                return false;
+            }
+            return true;
+        }
+
         public async Task CreateAsync(UserCreateDto userCreateDto)
         {
             var user = new User

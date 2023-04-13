@@ -7,14 +7,16 @@
 	<a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
+	<nav class="conteiner">
+		<ul>
+			<li><a asp-area="" asp-controller="UserWork" asp-action="GetListUserdRecord">List Record</a></li>
+		</ul>
+		<ul>
+			<li>
+				<a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
 	
-	<div class="container">
-		<div>
-			<a asp-area="" asp-controller="UserWork" asp-action="GetListUserdRecord">List Record</a>
-		</div>
-		<div>
-			<a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
-		</div>
-	</div>
+			</li>
+		</ul>
+	</nav>
 </body>
 </html>
