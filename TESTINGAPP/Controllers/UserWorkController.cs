@@ -72,7 +72,7 @@ namespace TESTINGAPP.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveEditRecordAsync(RecordCreateDto model, int id, int UserId)
         {
-            _recordService.EditRecord(model,id, UserId);
+             await  _recordService.EditRecord(model,id, UserId);
             return await GetListUserdRecordAsync();
         }
         [HttpGet]
@@ -80,7 +80,7 @@ namespace TESTINGAPP.Controllers
         {
             ViewData["Id"] = id;
             ViewData["UserId"] = UserId;
-            return View(await _recordService.GetRecordById(id));
+            return View(await _recordService.GetRecordDtoById(id));
         }
         [HttpGet]
         public async Task<IActionResult> DeleteRecord(int id)

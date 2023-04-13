@@ -47,7 +47,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
             _recordContext.SaveChanges();
         }
-        public async Task<RecordCreateDto> GetRecordById(int id)
+        public async Task<RecordCreateDto> GetRecordDtoById(int id)
         {
             return await MappingInRecordCreateDto(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
         }
@@ -58,7 +58,7 @@ namespace TESTINGAPP.BusinessLogic.Services
 
                 var rec = await MappingInRecordEdit(record, id, UserId);
                 _recordContext.Records.Update(rec);
-                _recordContext.SaveChanges();
+                await _recordContext.SaveChangesAsync();
             }
            
         }
@@ -74,23 +74,31 @@ namespace TESTINGAPP.BusinessLogic.Services
 
             return rec;
         }
+        private async Task<Record> GetRecordById(int id)
+        {
+            return await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id);
+        }
         private async Task<Record> MappingInRecordEdit(RecordCreateDto record, int id, int UserId)
         {
+            var rec = await GetRecordById(id);
+            if (rec == null)
+            {
+                return null;
+            }
+            else
+            {
+                rec.Date = DateTime.Now;
+                rec.Title = record.Title;
+                rec.Description = record.Description;
+                rec.Categories = record.Categories;
+                rec.Url = record.Url;
+                rec.FileName = record.Photo?.FileName;
+                rec.UserId = UserId;
 
-            var rec = new Record()
-            {
-                Id = id,
-                Date = DateTime.Now,
-                Title = record.Title,
-                Description = record.Description,
-                Categories = record.Categories,
-                Url = record.Url,
-                FileName = record.Photo?.FileName,
-                UserId= UserId
-            };
-            if (record.Photo != null)
-            {
-                rec.Photo = await ConvertToByteArray(record.Photo);
+                if (record.Photo != null)
+                {
+                    rec.Photo = await ConvertToByteArray(record.Photo);
+                }
             }
 
             return rec;
