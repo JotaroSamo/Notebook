@@ -80,7 +80,7 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveEditRecordAsync(RecordCreateDto model, int id, int UserId)
+        public async Task<IActionResult> SaveEditRecord(RecordCreateDto model, int id, int UserId)
         {
             _logger.LogInformation($"[{DateTime.Now}] SaveEditRecordAsync action called for record with Id={id} and user with Id={UserId}");
             await _recordService.EditRecord(model, id, UserId);
