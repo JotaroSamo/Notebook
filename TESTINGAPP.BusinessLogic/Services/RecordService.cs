@@ -69,7 +69,8 @@ namespace TESTINGAPP.BusinessLogic.Services
                 Title = record.Title,
                 Description = record.Description,
                 Categories = record.Categories,
-                Url = record.Url
+                Url = record.Url,
+                Image= record.Photo
             };
 
             return rec;
@@ -92,10 +93,12 @@ namespace TESTINGAPP.BusinessLogic.Services
                 rec.Description = record.Description;
                 rec.Categories = record.Categories;
                 rec.Url = record.Url;
-                rec.FileName = record.Photo?.FileName;
-                rec.UserId = UserId;
 
-                if (record.Photo != null)
+                if (record.DeletePhoto) 
+                {
+                    rec.Photo = null; 
+                }
+                else if (record.Photo != null)
                 {
                     rec.Photo = await ConvertToByteArray(record.Photo);
                 }
@@ -113,7 +116,7 @@ namespace TESTINGAPP.BusinessLogic.Services
                 Description = record.Description,
                 Categories = record.Categories,
                 Url = record.Url,
-                FileName = record.Photo?.FileName,
+                
                 UserId = id
             };
             if (record.Photo!=null)

@@ -6,10 +6,11 @@
 }
 
 
-h1 {
+.h2 {
     text-align: center;
     margin: 50px 0 30px;
 }
+
 form {
     width: 800px;
     margin: 20px auto;
@@ -27,6 +28,21 @@ button {
     font-size: 16px;
     cursor: pointer;
 }
+#DeletePhoto {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+    #DeletePhoto label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    #DeletePhoto input[type="checkbox"] {
+        transform: scale(1.5);
+        margin-right: 10px;
+    }
 
     button:hover {
         background-color: #0056b3;

@@ -4,7 +4,7 @@
 <head>
     <link href="~/css/Auth.css" rel="stylesheet">
     <meta charset="UTF-8">
-    <title>Записная книжка</title>
+    <title>Notebook</title>
 </head>
 <body>
   
@@ -14,34 +14,34 @@
         {
             if (string.IsNullOrEmpty(Model.Email) || string.IsNullOrEmpty(Model.Password) || string.IsNullOrEmpty(Model.Name) || string.IsNullOrEmpty(Model.Age))
             {
-                <h2>Введите все данные!!!</h2>
+                <h2>Enter all data!</h2>
             }
         }
         catch (Exception)
         {
         }
     <div>
-        <label>Имя пользователя:</label>
+        <label>User name:</label>
         <input type="text" name="Name" maxlength="32" min="5" />
     </div>
    
     <div>
-        <label>Почта:</label>
+        <label>Email:</label>
         <input type="email" name="Email" maxlength="32" />
     </div>
    
 
     <div>
-        <label>Пароль:</label>
+        <label>Password:</label>
         <input type="password" name="Password" maxlength="32" min="12" />
     </div>
    
     <div>
-    <label>Возраст:</label>
+    <label>Age:</label>
         <input type="text" name="Age" maxlength="3" min="1" />
     </div>
     <div>
-        <input type="submit" value="Регестрация">
+        <input type="submit" value="Regestration">
     </div>
 </form>
 </body>

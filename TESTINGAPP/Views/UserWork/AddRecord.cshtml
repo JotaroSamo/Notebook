@@ -7,34 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="~/css/Record Add.css" rel="stylesheet" />
-    <title>Записная книжка</title>
+    <title>Notebook</title>
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
-    <h1>Записная книжка</h1>
+    <h1>Notebook</h1>
     <form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
         <div>
-            <label for="title">Название:</label>
+            <label for="title">Tittle:</label>
             <input type="text" id="title" name="title">
         </div>
         <div>
-            <label for="description">Описание:</label>
+            <label for="description">Description:</label>
             <textarea id="description" name="description"></textarea>
         </div>
         <div>
-            <label for="categories">Категории:</label>
+            <label for="categories">Categories:</label>
             <input type="text" id="categories" name="categories">
         </div>
         <div>
-            <label for="url">Ссылка:</label>
+            <label for="url">Url:</label>
             <input type="url" id="url" name="url">
         </div>
         <div>
-            <label for="photo">Фотография:</label>
+            <label for="photo">Photo:</label>
             <input type="file" id="Photo" name="Photo" accept="image/*">
         </div>
         <div>
-            <input type="submit" value="Добавить">
+            <input type="submit" value="Add">
         </div>
     </form>
 </body>
