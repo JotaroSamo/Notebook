@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Notebook.Common.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TESTINGAPP.Models;
 
 namespace TESTINGAPP.Common.Dto
 {
@@ -18,6 +18,6 @@ namespace TESTINGAPP.Common.Dto
        
         public string Age { get; set; }
 
-        public string Role { get; set; }
+        public Role Role { get; set; }
     }
 }

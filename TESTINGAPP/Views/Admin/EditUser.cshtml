@@ -1,4 +1,4 @@
-﻿@model TESTINGAPP.Models.User
+﻿@model TESTINGAPP.Common.Dto.UserDto
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,8 +38,8 @@
             <div>
                 <label asp-for="Role">Role:</label>
                 <select asp-for="Role">
-                    <option value="User">User</option>
-                    <option value="Admin">Admin</option>
+                    <option value="0">User</option>
+                    <option value="1">Admin</option>
                 </select>
                 <span asp-validation-for="Role"></span>
             </div>

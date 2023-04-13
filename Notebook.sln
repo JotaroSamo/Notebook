@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook.Common", "TESTINGA
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Notebook.BusinessLogic", "TESTINGAPP.BusinessLogic\Notebook.BusinessLogic.csproj", "{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notebook.Mapper", "Notebook.Mapper\Notebook.Mapper.csproj", "{D238DD96-9B1C-4484-9896-9FDCD09F505B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CD2E1D7-51D3-46F3-BA93-D3BBCDFFC93A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D238DD96-9B1C-4484-9896-9FDCD09F505B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D238DD96-9B1C-4484-9896-9FDCD09F505B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D238DD96-9B1C-4484-9896-9FDCD09F505B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D238DD96-9B1C-4484-9896-9FDCD09F505B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

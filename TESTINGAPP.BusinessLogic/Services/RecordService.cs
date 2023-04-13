@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -14,15 +15,17 @@ namespace TESTINGAPP.BusinessLogic.Services
 {
     public class RecordService : IRecordService
     {
-        private RecordContext _recordContext;
+        private  readonly RecordContext _recordContext;
+        private readonly IMapper _mapper;
 
-        public RecordService(RecordContext recordContext) { 
+        public RecordService(RecordContext recordContext, IMapper mapper) { 
             _recordContext = recordContext;
+            _mapper = mapper;
 
         }
-        public async Task<List<Record>> AllRecord(int UserId)
+        public async Task<List<RecordDto>> AllRecord(int UserId)
         {
-            return await _recordContext.Records.Where(c => c.UserId == UserId).ToListAsync();
+            return _mapper.Map<List<Record>,List<RecordDto>>(await _recordContext.Records.Where(c => c.UserId == UserId).ToListAsync());
         }
 
         public async Task RecordCreate(RecordDto record, int id)
@@ -35,9 +38,6 @@ namespace TESTINGAPP.BusinessLogic.Services
                  _recordContext.Records.Add(rec);
                 await _recordContext.SaveChangesAsync();
             }
-          
-
-          
         }
 
 

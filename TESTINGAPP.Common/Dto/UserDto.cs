@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Notebook.Common.Dto
+namespace TESTINGAPP.Common.Dto
 {
 	public class UserDto
 	{

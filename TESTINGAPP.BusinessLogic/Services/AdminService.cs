@@ -1,19 +1,24 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TESTINGAPP.BusinessLogic.Interfaces;
+using TESTINGAPP.Common.Dto;
 using TESTINGAPP.Models;
 
 namespace TESTINGAPP.BusinessLogic.Services
 {
     public class AdminService : IAdminService
     {
-        RecordContext _recordContext;
-        public AdminService() { 
-            _recordContext = new RecordContext();
+      private readonly  RecordContext _recordContext;
+        private readonly IMapper _mapper;
+        public AdminService( RecordContext recordContext, IMapper mapper) 
+        { 
+            _recordContext = recordContext;
+            _mapper = mapper;
         }
 
         public async Task Delete(int id)
@@ -26,22 +31,18 @@ namespace TESTINGAPP.BusinessLogic.Services
             await _recordContext.SaveChangesAsync();
         }
 
-        public async Task<List<User>> GetAll()
+        public async Task<List<UserDto>> GetAll()
         {
-            var users = await _recordContext.Users.ToListAsync();
-            return users;
+            return _mapper.Map<List<User>,List<UserDto>>(await _recordContext.Users.ToListAsync());
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<UserDto> GetById(int id)
         {
-            var user = await _recordContext.Users.FindAsync(id);
-            
+            return _mapper.Map<User, UserDto>(await _recordContext.Users.FindAsync(id));
 
-            return user;
+		}
 
-        }
-
-        public async Task<List<User>> SearchAsync(string searchString)
+        public async Task<List<UserDto>> SearchAsync(string searchString)
         {
 
             var users = from u in _recordContext.Users
@@ -49,13 +50,12 @@ namespace TESTINGAPP.BusinessLogic.Services
           
                 users = users.Where(u => u.Name.Contains(searchString) || u.Email.Contains(searchString));
            
-            var userList = await users.ToListAsync();
-            return userList;
-        }
+            return _mapper.Map<List<User>, List<UserDto>>(await users.ToListAsync());
+		}
 
-        public async Task UpdateUser(User user)
+        public async Task UpdateUser(UserDto user)
         {
-            _recordContext.Update(user);
+            _recordContext.Update(_mapper.Map<UserDto, User>(user));
             await _recordContext.SaveChangesAsync();
         }
     }

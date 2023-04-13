@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-
+using AutoMapper;
 
 namespace TESTINGAPP.Controllers
 {
@@ -14,11 +14,13 @@ namespace TESTINGAPP.Controllers
 
         private readonly ILogger<AuthController> _logger;
         private readonly IUserService _userService;
+        private readonly IMapper _mapper;
 
-        public AuthController(IUserService userService, ILogger<AuthController> logger)
+        public AuthController(IUserService userService, ILogger<AuthController> logger, IMapper mapper)
         {
             _userService = userService;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IActionResult AuthPage()
@@ -42,7 +44,7 @@ namespace TESTINGAPP.Controllers
                 }
                 _logger.LogInformation($"{DateTime.Now} Method RegPage has been called with model {@model}.", model);
 
-                if (await _userService.GetCheckAsync(_userService.Maping(model)) == null)
+                if (await _userService.GetCheckAsync(_mapper.Map<UserCreateDto, CheckUser>(model)) == null)
                 {
                     await _userService.CreateAsync(model);
                     _logger.LogInformation("User with name {Name} and email {Email} has been created. {3}", model.Name, model.Email, DateTime.Now);
@@ -75,10 +77,10 @@ namespace TESTINGAPP.Controllers
                 var claims = new List<Claim>()
         {
             new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-            new Claim(ClaimTypes.Role, user.Role)
+            new Claim(ClaimTypes.Role, user.Role.ToString())
         };
 
-                if (user.Role == "Admin")
+                if (user.Role.ToString() == "Admin")
                 {
                     _logger.LogInformation("Admin with email {userAuthDto.Email} has logged in at {DateTime.Now}", userAuthDto.Email, DateTime.Now);
                     var claimIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

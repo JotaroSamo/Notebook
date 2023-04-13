@@ -1,4 +1,5 @@
 ﻿
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,12 +16,12 @@ namespace TESTINGAPP.BusinessLogic.Services
     {
         private readonly RecordContext _recordContext;
 
-
-        public UserService(RecordContext recordContext)
+		private readonly IMapper _mapper;
+		public UserService(RecordContext recordContext, IMapper mapper)
         {
             _recordContext = recordContext;
-          
-        }
+			_mapper = mapper;
+		}
 
         public async Task<bool> CheckNull(UserCreateDto model)
         {
@@ -33,23 +34,15 @@ namespace TESTINGAPP.BusinessLogic.Services
 
         public async Task CreateAsync(UserCreateDto userCreateDto)
         {
-            var user = new User
-            {
-                Name = userCreateDto.Name,
-                Email = userCreateDto.Email,
-                Password = userCreateDto.Password,
-                Age = userCreateDto.Age,
-                Role = "User"
-            };
-
-            _recordContext.Users.Add(user);
+          
+            _recordContext.Users.Add(_mapper.Map<UserCreateDto, User>(userCreateDto));
             await _recordContext.SaveChangesAsync();
             
         }
 
        
 
-        public async Task<UserDto> GetAsync(UserAuthDto userAuthDto)
+        public async Task<User> GetAsync(UserAuthDto userAuthDto)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
                 u.Email == userAuthDto.Email && u.Password == userAuthDto.Password);
@@ -60,7 +53,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             return user;
         }
 
-        public async Task<UserDto> GetCheckAsync(CheckUser checkUser)
+        public async Task<UserAuthDto> GetCheckAsync(CheckUser checkUser)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
                  u.Email == checkUser.Email || u.Name == checkUser.Name);
@@ -68,18 +61,9 @@ namespace TESTINGAPP.BusinessLogic.Services
             {
                 return null;
             }
-            return user;
-        }
+			return _mapper.Map<User, UserAuthDto>(user);
+		}
 
-        public CheckUser Maping(UserCreateDto model)
-        {
-            var check = new CheckUser()
-            {
-                Email = model.Email,
-                Name = model.Name
-
-            };
-            return check;
-        }
+     
     }
 }

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Notebook.Common.Enum;
 
 namespace TESTINGAPP.Models
 {
@@ -20,7 +22,7 @@ namespace TESTINGAPP.Models
 
         public string Age { get; set; }
 
-        public string Role { get; set; }
+		public Role Role { get; set; }
 
-    }
+	}
 }

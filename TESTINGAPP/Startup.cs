@@ -6,6 +6,8 @@ using TESTINGAPP.BusinessLogic.Interfaces;
 using TESTINGAPP.BusinessLogic.Services;
 using TESTINGAPP.Models;
 using Serilog;
+using AutoMapper;
+using Notebook.Mapper;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<RecordContext>(options =>
@@ -30,6 +32,13 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie();
 builder.Services.AddSingleton<IConfiguration>(builder.Configuration);
+var mappingConfig = new MapperConfiguration(mc =>
+{
+	mc.AddProfile(new MapperProfile());
+});
+
+var mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,13 +15,13 @@ namespace TESTINGAPP.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IAdminService _adminService;
-      
+        private readonly IMapper _mapper;
 
-        public AdminController(ILogger<AdminController> logger, IAdminService adminService)
+        public AdminController(ILogger<AdminController> logger, IAdminService adminService, IMapper mapper)
         {
             _logger = logger;
             _adminService = adminService;
-        
+        _mapper = mapper;
 
         }
         [Authorize]
@@ -39,7 +40,7 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
+        public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] UserDto user)
         {
             if (id != user.Id)
             {
@@ -88,7 +89,7 @@ namespace TESTINGAPP.Controllers
             }
         }
         [Authorize(Roles = "Admin")]
-        public IActionResult ViewAllUser(List<User> user)
+        public IActionResult ViewAllUser(List<UserDto> user)
         {
 
             return View(user);
