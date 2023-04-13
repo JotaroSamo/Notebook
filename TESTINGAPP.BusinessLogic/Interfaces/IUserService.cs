@@ -16,9 +16,9 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
 
         CheckUser Maping(UserCreateDto model);
 
-        Task<User> GetAsync(UserAuthDto userAuthDto);
+        Task<UserDto> GetAsync(UserAuthDto userAuthDto);
 
-        Task<User> GetCheckAsync(CheckUser checkUser);
+        Task<UserDto> GetCheckAsync(CheckUser checkUser);
 
         Task<bool> CheckNull(UserCreateDto model);
       

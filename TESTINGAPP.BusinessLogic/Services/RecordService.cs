@@ -25,7 +25,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             return await _recordContext.Records.Where(c => c.UserId == UserId).ToListAsync();
         }
 
-        public async Task RecordCreate(RecordCreateDto record, int id)
+        public async Task RecordCreate(RecordDto record, int id)
         {
 
             if (record!= null)
@@ -47,11 +47,11 @@ namespace TESTINGAPP.BusinessLogic.Services
             _recordContext.Remove(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
             _recordContext.SaveChanges();
         }
-        public async Task<RecordCreateDto> GetRecordDtoById(int id)
+        public async Task<RecordDto> GetRecordDtoById(int id)
         {
             return await MappingInRecordCreateDto(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
         }
-        public async Task EditRecord(RecordCreateDto record, int id, int UserId)
+        public async Task EditRecord(RecordDto record, int id, int UserId)
         {
             if (record != null)
             {
@@ -62,9 +62,9 @@ namespace TESTINGAPP.BusinessLogic.Services
             }
            
         }
-        private async Task<RecordCreateDto> MappingInRecordCreateDto(Record record)
+        private async Task<RecordDto> MappingInRecordCreateDto(Record record)
         {
-            var rec = new RecordCreateDto()
+            var rec = new RecordDto()
             {
                 Title = record.Title,
                 Description = record.Description,
@@ -79,7 +79,7 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
             return await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id);
         }
-        private async Task<Record> MappingInRecordEdit(RecordCreateDto record, int id, int UserId)
+        private async Task<Record> MappingInRecordEdit(RecordDto record, int id, int UserId)
         {
             var rec = await GetRecordById(id);
             if (rec == null)
@@ -106,7 +106,7 @@ namespace TESTINGAPP.BusinessLogic.Services
 
             return rec;
         }
-        private async Task<Record> MappingInRecord(RecordCreateDto record, int id)
+        private async Task<Record> MappingInRecord(RecordDto record, int id)
         {
 
             var rec = new Record()

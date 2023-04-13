@@ -1,8 +1,11 @@
-﻿@model TESTINGAPP.Common.Dto.RecordCreateDto
+﻿@model TESTINGAPP.Common.Dto.RecordDto
+@{
+    var httpContext = ViewContext.HttpContext;
+    int? userId = httpContext.Session.GetInt32("UserId");
+}
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Edit Record</title>
     <link href="~/css/Record Add.css" rel="stylesheet" />
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
@@ -12,7 +15,7 @@
        
         <form asp-action="SaveEditRecord" asp-controller="UserWork" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" value="@ViewData["Id"]" />
-            <input type="hidden" name="UserId" value="@ViewData["UserId"]" />
+            <input type="hidden" name="UserId" value="@userId" />
             <div>
                 <label for="title">Title:</label>
                 <input asp-for="Title">

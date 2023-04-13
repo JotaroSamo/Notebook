@@ -11,7 +11,6 @@
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
 <body>
-    <h1>Edit User</h1>
     <form asp-controller="Admin" asp-action="UpdateUser" method="post">
         <input type="hidden" asp-for="Id" />
         <div>
@@ -34,14 +33,18 @@
             <input asp-for="Age" />
             <span asp-validation-for="Age"></span>
         </div>
-        <div>
-            <label asp-for="Role">Role:</label>
-            <select asp-for="Role">
-                <option value="User">User</option>
-                <option value="Admin">Admin</option>
-            </select>
-            <span asp-validation-for="Role"></span>
-        </div>
+        @if (User.IsInRole("Admin"))
+        {
+            <div>
+                <label asp-for="Role">Role:</label>
+                <select asp-for="Role">
+                    <option value="User">User</option>
+                    <option value="Admin">Admin</option>
+                </select>
+                <span asp-validation-for="Role"></span>
+            </div>
+        }
+       
         <button type="submit">Save</button>
     </form>
 </body>

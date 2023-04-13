@@ -58,7 +58,7 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RecordCreateDto model)
+        public async Task<IActionResult> Create(RecordDto model)
         {
             try
             {
@@ -80,7 +80,7 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveEditRecord(RecordCreateDto model, int id, int UserId)
+        public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, int UserId)
         {
             _logger.LogInformation($"[{DateTime.Now}] SaveEditRecordAsync action called for record with Id={id} and user with Id={UserId}");
             await _recordService.EditRecord(model, id, UserId);
@@ -91,7 +91,6 @@ namespace TESTINGAPP.Controllers
         public async Task<IActionResult> EditRecord(int id, int UserId)
         {
             ViewData["Id"] = id;
-            ViewData["UserId"] = UserId;
             _logger.LogInformation($"[{DateTime.Now}] EditRecord action called for record with Id={id} and user with Id={UserId}");
             return View(await _recordService.GetRecordDtoById(id));
         }

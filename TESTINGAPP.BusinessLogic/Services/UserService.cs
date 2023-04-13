@@ -49,7 +49,7 @@ namespace TESTINGAPP.BusinessLogic.Services
 
        
 
-        public async Task<User> GetAsync(UserAuthDto userAuthDto)
+        public async Task<UserDto> GetAsync(UserAuthDto userAuthDto)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
                 u.Email == userAuthDto.Email && u.Password == userAuthDto.Password);
@@ -60,7 +60,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             return user;
         }
 
-        public async Task<User> GetCheckAsync(CheckUser checkUser)
+        public async Task<UserDto> GetCheckAsync(CheckUser checkUser)
         {
             var user = await _recordContext.Users.FirstOrDefaultAsync(u =>
                  u.Email == checkUser.Email || u.Name == checkUser.Name);

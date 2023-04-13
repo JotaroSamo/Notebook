@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TESTINGAPP.Common.Dto
 {
-    public class RecordCreateDto
+    public class RecordDto
     {
         
         public string? Title { get; set; } 

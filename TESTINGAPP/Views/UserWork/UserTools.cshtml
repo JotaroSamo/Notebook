@@ -1,10 +1,14 @@
-﻿<!DOCTYPE html>
+﻿@{
+	var httpContext = ViewContext.HttpContext;
+	int? userId = httpContext.Session.GetInt32("UserId");
+}
+<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Выбор инструмента</title>
 	<link href="~/css/tools.css" rel="stylesheet">
 	<a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+	
 </head>
 <body>
 	<nav class="conteiner">
@@ -14,7 +18,14 @@
 		<ul>
 			<li>
 				<a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
-	
+			</li>
+		</ul>
+		<ul>
+			<li>
+				<form asp-area="" asp-controller="Admin" asp-action="EditUser" method="post">
+					<button type="submit">Profile</button>
+					<input type="hidden" name="id" value="@userId" />
+				</form>
 			</li>
 		</ul>
 	</nav>

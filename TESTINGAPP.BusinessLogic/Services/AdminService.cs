@@ -21,9 +21,8 @@ namespace TESTINGAPP.BusinessLogic.Services
             var recordsToRemove = _recordContext.Records.Where(c => c.UserId == id).ToList();
             _recordContext.Records.RemoveRange(recordsToRemove);
             var userToRemove = await _recordContext.Users.FindAsync(id);
-#pragma warning disable CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
             _recordContext.Users.Remove(userToRemove);
-#pragma warning restore CS8604 // Возможно, аргумент-ссылка, допускающий значение NULL.
+
             await _recordContext.SaveChangesAsync();
         }
 
@@ -37,9 +36,9 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
             var user = await _recordContext.Users.FindAsync(id);
             
-#pragma warning disable CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+
             return user;
-#pragma warning restore CS8603 // Возможно, возврат ссылки, допускающей значение NULL.
+
         }
 
         public async Task<List<User>> SearchAsync(string searchString)

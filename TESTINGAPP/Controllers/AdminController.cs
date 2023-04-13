@@ -23,6 +23,7 @@ namespace TESTINGAPP.Controllers
         
 
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> EditUser(int id)
         {
@@ -38,8 +39,6 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
         public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] User user)
         {
             if (id != user.Id)

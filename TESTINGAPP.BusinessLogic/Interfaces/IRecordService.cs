@@ -12,10 +12,10 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
    public interface IRecordService
     {
         Task<List<Record>> AllRecord(int UserId);
-        Task RecordCreate(RecordCreateDto record, int id);
+        Task RecordCreate(RecordDto record, int id);
         Task DeleteRecord(int id);
-        Task EditRecord(RecordCreateDto record, int id, int UserId);
+        Task EditRecord(RecordDto record, int id, int UserId);
         Task<List<Record>> SearchAsync(string searchString);
-        Task<RecordCreateDto> GetRecordDtoById(int id);
+        Task<RecordDto> GetRecordDtoById(int id);
     }
 }
