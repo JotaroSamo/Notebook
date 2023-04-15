@@ -36,6 +36,7 @@ namespace TESTINGAPP.BusinessLogic.Services
 
                 var rec = _mapper.Map<RecordDto, Record>(record);
                 rec.UserId = id;
+                rec.Date= DateTime.Now;
                  _recordContext.Records.Add(rec);
                 await _recordContext.SaveChangesAsync();
             }
@@ -50,7 +51,7 @@ namespace TESTINGAPP.BusinessLogic.Services
         }
         public async Task<RecordDto> GetRecordDtoById(int id)
         {
-            return await MappingInRecordCreateDto(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
+            return _mapper.Map<Record, RecordDto>(await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id));
         }
         public async Task EditRecord(RecordDto record, int id, int UserId)
         {
@@ -60,7 +61,8 @@ namespace TESTINGAPP.BusinessLogic.Services
 				var rec = _mapper.Map<RecordDto, Record>(record);
 				rec.UserId = UserId;
                 rec.Id = id;
-				if (record.DeletePhoto)
+                rec.Date = DateTime.Now;
+                if (record.DeletePhoto)
 				{
 					rec.Photo = null;
 				}
@@ -69,24 +71,7 @@ namespace TESTINGAPP.BusinessLogic.Services
             }
            
         }
-        private async Task<RecordDto> MappingInRecordCreateDto(Record record)
-        {
-            var rec = new RecordDto()
-            {
-                Title = record.Title,
-                Description = record.Description,
-                Categories = record.Categories,
-                Url = record.Url,
-                Photo= record.Photo
-            };
-
-            return rec;
-        }
-        private async Task<Record> GetRecordById(int id)
-        {
-            return await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id);
-        }
-   
+     
         public async Task<byte[]> ConvertToByteArray(IFormFile file)
         {
             if (file == null)
