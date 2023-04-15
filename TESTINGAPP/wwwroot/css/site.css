@@ -1,55 +1,43 @@
 /* Базовый размер шрифта */
 html {
-    font-size: 16px;
+    font-size: 18px;
 }
 
-/* Медиа-запрос для увеличения размера шрифта на больших экранах */
-@media (min-width: 768px) {
-    html {
-        font-size: 18px;
-    }
-}
-
-/* Установка полной высоты для html-элемента */
-html {
-    position: relative;
-    min-height: 100%;
-}
-
-head {
-    text-align: right;
-}
-
-/* стили для тега body */
+/* Стили для элементов на странице */
 body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f1f1f1;
+    background-color: #f8f8f8;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column-reverse;
 }
+
+/* Фоновое изображение */
 .back {
     background-image: url('../img/background.png');
     background-size: cover;
 }
 
+/* Основной контейнер */
 .container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-}
-.containerindex {
     max-width: 800px;
     margin: 50px 0 30px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    text-align: right;
+    text-align: center;
 }
+
+/* Основной заголовок */
+.h2 {
+    text-align: center;
+    margin: 50px 0 30px;
+}
+
 /* Стили для ссылок */
 a {
     display: inline-block;
@@ -64,43 +52,34 @@ a {
     a:hover {
         background-color: #0062cc;
     }
-h1 {
-    text-align: center;
-    margin: 50px 0 30px;
-}
-/* Стиль для кнопок */
+
+/* Стили для кнопок */
 button {
+    display: inline-block;
+    margin: 10px;
     padding: 10px 20px;
-    border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    text-decoration: none;
     color: #fff;
+    background-color: #007bff;
     font-size: 16px;
+    border: none;
     cursor: pointer;
 }
 
     button:hover {
         background-color: #0056b3;
     }
-.del {
-    background-color: red;
-}
-    .del a:hover {
-        color:darkred;
-    }
-.edit {
-    background-color:grey
-}
-.edit a:hover {
-    color:dimgray;
-}
+
+/* Стили для таблицы */
 table {
     border-collapse: collapse;
     width: 100%;
     margin-bottom: 20px;
 }
 
-th, td {
+th,
+td {
     text-align: left;
     padding: 8px;
 }
@@ -112,4 +91,38 @@ th {
 
 tr:nth-child(even) {
     background-color: #f2f2f2;
+}
+
+/* Стили для формы */
+form {
+    width: 800px;
+    margin: 20px auto;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+/* Стили для кнопки удаления */
+#DeletePhoto {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
+}
+
+    #DeletePhoto label {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    #DeletePhoto input[type='checkbox'] {
+        transform: scale(1.5);
+        margin-right: 10px;
+    }
+
+/* Правый верхний угол */
+.right-top {
+    position: absolute;
+    top: 0;
+    right: 0;
 }
