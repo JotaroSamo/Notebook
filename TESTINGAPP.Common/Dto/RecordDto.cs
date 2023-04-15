@@ -10,13 +10,14 @@ namespace TESTINGAPP.Common.Dto
 {
     public class RecordDto
     {
-        
+        public int Id { get; set; }
+        public DateTime? Date { get; set; }
         public string? Title { get; set; } 
         public string? Description { get; set; } 
         public string? Categories { get; set; } 
         public string? Url { get; set; } 
-        public IFormFile? Photo { get; set; }
-        public bool DeletePhoto { get; set; } 
-        public byte[] Image { get; set; }
+        public byte[]? Photo { get; set; }
+        public bool DeletePhoto { get; set; }
+        public int UserId { get; set; }
     }
 }

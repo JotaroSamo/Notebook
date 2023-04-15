@@ -19,6 +19,8 @@ namespace Notebook.Mapper
 			CreateMap<User, UserDto>().ReverseMap();
 			CreateMap<UserAuthDto, User>().ReverseMap();
 			CreateMap<UserCreateDto, CheckUser>().ReverseMap();
-		}
+			CreateMap<Record, RecordDto>().ReverseMap();
+
+        }
 	}
 }

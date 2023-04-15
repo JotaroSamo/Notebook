@@ -34,7 +34,8 @@ namespace TESTINGAPP.BusinessLogic.Services
             if (record!= null)
             {
 
-                var rec = await MappingInRecord(record, id);
+                var rec = _mapper.Map<RecordDto, Record>(record);
+                rec.UserId = id;
                  _recordContext.Records.Add(rec);
                 await _recordContext.SaveChangesAsync();
             }
@@ -56,8 +57,14 @@ namespace TESTINGAPP.BusinessLogic.Services
             if (record != null)
             {
 
-                var rec = await MappingInRecordEdit(record, id, UserId);
-                _recordContext.Records.Update(rec);
+				var rec = _mapper.Map<RecordDto, Record>(record);
+				rec.UserId = UserId;
+                rec.Id = id;
+				if (record.DeletePhoto)
+				{
+					rec.Photo = null;
+				}
+				_recordContext.Records.Update(rec);
                 await _recordContext.SaveChangesAsync();
             }
            
@@ -70,7 +77,7 @@ namespace TESTINGAPP.BusinessLogic.Services
                 Description = record.Description,
                 Categories = record.Categories,
                 Url = record.Url,
-                Image= record.Photo
+                Photo= record.Photo
             };
 
             return rec;
@@ -79,56 +86,8 @@ namespace TESTINGAPP.BusinessLogic.Services
         {
             return await _recordContext.Records.FirstOrDefaultAsync(c => c.Id == id);
         }
-        private async Task<Record> MappingInRecordEdit(RecordDto record, int id, int UserId)
-        {
-            var rec = await GetRecordById(id);
-            if (rec == null)
-            {
-                return null;
-            }
-            else
-            {
-                rec.Date = DateTime.Now;
-                rec.Title = record.Title;
-                rec.Description = record.Description;
-                rec.Categories = record.Categories;
-                rec.Url = record.Url;
-
-                if (record.DeletePhoto) 
-                {
-                    rec.Photo = null; 
-                }
-                else if (record.Photo != null)
-                {
-                    rec.Photo = await ConvertToByteArray(record.Photo);
-                }
-            }
-
-            return rec;
-        }
-        private async Task<Record> MappingInRecord(RecordDto record, int id)
-        {
-
-            var rec = new Record()
-            {
-                Date = DateTime.Now,
-                Title = record.Title,
-                Description = record.Description,
-                Categories = record.Categories,
-                Url = record.Url,
-                
-                UserId = id
-            };
-            if (record.Photo!=null)
-            {
-                rec.Photo = await ConvertToByteArray(record.Photo);
-            }
-
-            return rec;
-        }
-
-       
-        private async Task<byte[]> ConvertToByteArray(IFormFile file)
+   
+        public async Task<byte[]> ConvertToByteArray(IFormFile file)
         {
             if (file == null)
             {

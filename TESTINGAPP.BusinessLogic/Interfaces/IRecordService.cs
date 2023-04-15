@@ -17,5 +17,7 @@ namespace TESTINGAPP.BusinessLogic.Interfaces
         Task EditRecord(RecordDto record, int id, int UserId);
         Task<List<Record>> SearchAsync(string searchString);
         Task<RecordDto> GetRecordDtoById(int id);
-    }
+        Task<byte[]> ConvertToByteArray(IFormFile file);
+
+	}
 }

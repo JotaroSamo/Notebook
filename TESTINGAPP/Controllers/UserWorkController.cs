@@ -26,14 +26,14 @@ namespace TESTINGAPP.Controllers
         public IActionResult UserTools()
         {
             HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
-            _logger.LogInformation($"[{DateTime.UtcNow.ToString()}] UserTools action called");
+            _logger.LogInformation($"[{DateTime.Now}] UserTools action called");
             return View();
         }
 
         [Authorize]
         public IActionResult AddRecord()
         {
-            _logger.LogInformation($"[{DateTime.UtcNow.ToString()}] AddRecord action called");
+            _logger.LogInformation($"[{DateTime.Now}] AddRecord action called");
             return View();
         }
 
@@ -53,12 +53,12 @@ namespace TESTINGAPP.Controllers
         [Authorize]
         public async Task<IActionResult> AllRecord(int UserId)
         {
-            _logger.LogInformation($"[{DateTime.UtcNow.ToString()}] AllRecord action called for user with Id={UserId}");
+            _logger.LogInformation($"[{DateTime.Now}] AllRecord action called for user with Id={UserId}");
             return View(await _recordService.AllRecord(UserId));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(RecordDto model)
+        public async Task<IActionResult> Create(RecordDto model, IFormFile file)
         {
             try
             {
@@ -67,7 +67,10 @@ namespace TESTINGAPP.Controllers
                 {
                     return NotFound();
                 }
-
+                if (file!=null)
+                {
+                    model.Photo = await _recordService.ConvertToByteArray(file);
+                }
                 _logger.LogInformation($"[{DateTime.Now}] Create action called for user with Id={UserId}");
                 await _recordService.RecordCreate(model, UserId);
                 return await GetListUserdRecordAsync();
@@ -80,10 +83,15 @@ namespace TESTINGAPP.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, int UserId)
+        public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, int UserId, IFormFile file)
         {
-            _logger.LogInformation($"[{DateTime.Now}] SaveEditRecordAsync action called for record with Id={id} and user with Id={UserId}");
-            await _recordService.EditRecord(model, id, UserId);
+          
+			if (file != null)
+			{
+				model.Photo = await _recordService.ConvertToByteArray(file);
+			}
+			_logger.LogInformation($"[{DateTime.Now}] SaveEditRecordAsync action called for record with Id={id} and user with Id={UserId}");
+			await _recordService.EditRecord(model, id, UserId);
             return await GetListUserdRecordAsync();
         }
 
