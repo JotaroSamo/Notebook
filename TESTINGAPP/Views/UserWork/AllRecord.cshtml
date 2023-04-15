@@ -1,17 +1,18 @@
 ﻿@using TESTINGAPP.Common.Dto
 @model List<RecordDto>
-
+@{ViewData["Title"] = "Record List";}
 <!DOCTYPE html>
 <html>
 <head>
     <link href="~/css/site.css" rel="stylesheet" />
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+  
+</head>
+<body class="back">
     @if (User.IsInRole("Admin"))
     {
         <a asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
     }
-</head>
-<body>
     <div>
         <a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
     </div>

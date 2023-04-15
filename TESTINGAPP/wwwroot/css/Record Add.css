@@ -4,7 +4,10 @@
     font-family: Arial, sans-serif;
     background-color: #f8f8f8;
 }
-
+.back {
+    background-image: url('../img/background.png');
+    background-size: cover;
+}
 
 .h2 {
     text-align: center;

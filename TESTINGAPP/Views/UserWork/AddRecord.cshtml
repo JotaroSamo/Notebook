@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
 @model TESTINGAPP.Common.Dto.RecordDto;
+@{ViewData["Title"] = "Create Record";}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +11,7 @@
     <title>Notebook</title>
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
-<body>
+<body class="back">
     <form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Tittle:</label>

@@ -14,7 +14,10 @@ body {
     align-items: center;
     flex-direction: column-reverse;
 }
-
+.back {
+    background-image: url('../img/background.png');
+    background-size: cover;
+}
 .back {
     background-image: url('../img/index.png');
     background-size: cover;

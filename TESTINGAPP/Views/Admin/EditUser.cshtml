@@ -1,5 +1,7 @@
 ﻿@model TESTINGAPP.Common.Dto.UserDto
-
+@{
+    ViewData["Title"] = "Edit";
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +11,9 @@
     <title>Edit User</title>
     <link href="~/css/EditUser.css" rel="stylesheet">
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+        ViewData["Title"] = "Privacy Policy";
 </head>
-<body>
+<body class="back">
     <form asp-controller="Admin" asp-action="UpdateUser" method="post">
         <input type="hidden" asp-for="Id" />
         <div>

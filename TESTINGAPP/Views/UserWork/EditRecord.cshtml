@@ -3,13 +3,14 @@
     var httpContext = ViewContext.HttpContext;
     int? userId = httpContext.Session.GetInt32("UserId");
 }
+@{ViewData["Title"] = "Edit Record";}
 <!DOCTYPE html>
 <html>
 <head>
     <link href="~/css/Record Add.css" rel="stylesheet" />
     <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 </head>
-<body>
+<body class="back">
     <h2 class="h2">Edit Record</h2>
     <div class="container">
        

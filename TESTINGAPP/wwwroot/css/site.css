@@ -16,10 +16,24 @@ html {
     min-height: 100%;
 }
 
-/* Общие стили для страницы */
+head {
+    text-align: right;
+}
+
+/* стили для тега body */
 body {
+    margin: 0;
+    padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+.back {
+    background-image: url('../img/background.png');
+    background-size: cover;
 }
 
 .container {
@@ -27,7 +41,15 @@ body {
     margin: 0 auto;
     text-align: center;
 }
-
+.containerindex {
+    max-width: 800px;
+    margin: 50px 0 30px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: right;
+}
 /* Стили для ссылок */
 a {
     display: inline-block;
@@ -42,7 +64,10 @@ a {
     a:hover {
         background-color: #0062cc;
     }
-
+h1 {
+    text-align: center;
+    margin: 50px 0 30px;
+}
 /* Стиль для кнопок */
 button {
     padding: 10px 20px;

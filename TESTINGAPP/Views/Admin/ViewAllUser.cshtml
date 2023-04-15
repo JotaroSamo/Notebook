@@ -1,5 +1,6 @@
 ﻿@using TESTINGAPP.Common.Dto
 @model List<UserDto>;
+@{ViewData["Title"] = "User List";}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <title>Notebook</title>
     <link href="~/css/site.css" rel="stylesheet">
 </head>
-<body>
+<body class="back">
     <header>
         <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
     </header>

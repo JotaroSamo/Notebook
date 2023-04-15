@@ -2,6 +2,7 @@
 	var httpContext = ViewContext.HttpContext;
 	int? userId = httpContext.Session.GetInt32("UserId");
 }
+@{ViewData["Title"] ="Tools";}
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +11,7 @@
 	<a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
 	
 </head>
-<body>
+<body class="back">
 	<nav class="conteiner">
 		<ul>
 			<li><a asp-area="" asp-controller="UserWork" asp-action="GetListUserdRecord">List Record</a></li>

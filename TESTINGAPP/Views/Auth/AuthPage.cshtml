@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
 @model TESTINGAPP.Common.Dto.UserAuthDto;
+@{ViewData["Title"] = "Authorize";}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
     <meta charset="UTF-8">
     <title>Notebook</title>
 </head>
-<body>
+<body class="back">
     <form method="post" asp-action="Auth" asp-controller="Auth">
         <div>
             <label>Email:</label>
