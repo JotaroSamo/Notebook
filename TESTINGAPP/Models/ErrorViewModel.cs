@@ -1,4 +1,4 @@
-namespace TESTINGAPP.Models
+namespace Notebook.Models
 {
     public class ErrorViewModel
     {

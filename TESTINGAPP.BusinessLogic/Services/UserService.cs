@@ -6,11 +6,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TESTINGAPP.BusinessLogic.Interfaces;
-using TESTINGAPP.Common.Dto;
-using TESTINGAPP.Models;
+using Notebook.BusinessLogic.Interfaces;
+using Notebook.Common.Dto;
+using Notebook.Models;
 
-namespace TESTINGAPP.BusinessLogic.Services
+namespace Notebook.BusinessLogic.Services
 {
     public class UserService : IUserService
     {

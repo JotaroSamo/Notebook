@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Notebook.Common.Enum;
 
-namespace TESTINGAPP.Models
+namespace Notebook.Models
 {
     public class User
     {

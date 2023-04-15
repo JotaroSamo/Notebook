@@ -1,13 +1,13 @@
 ﻿using System.Security.Claims;
-using TESTINGAPP.BusinessLogic.Interfaces;
-using TESTINGAPP.Common.Dto;
+using Notebook.BusinessLogic.Interfaces;
+using Notebook.Common.Dto;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 
-namespace TESTINGAPP.Controllers
+namespace Notebook.Controllers
 {
     public class AuthController : Controller
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TESTINGAPP.Common.Dto
+namespace Notebook.Common.Dto
 {
     public class RecordDto
     {

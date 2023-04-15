@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using TESTINGAPP.Models;
+using Notebook.Models;
 
 
-namespace TESTINGAPP.Controllers
+namespace Notebook.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
-using TESTINGAPP.Common.Dto;
-using TESTINGAPP.BusinessLogic.Interfaces;
+using Notebook.Common.Dto;
+using Notebook.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using TESTINGAPP.Models;
-using TESTINGAPP.BusinessLogic.Services;
+using Notebook.Models;
+using Notebook.BusinessLogic.Services;
 
-namespace TESTINGAPP.Controllers
+namespace Notebook.Controllers
 {
     public class UserWorkController : Controller
     {

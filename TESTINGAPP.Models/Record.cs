@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TESTINGAPP.Models
+namespace Notebook.Models
 {
     public class Record
     {

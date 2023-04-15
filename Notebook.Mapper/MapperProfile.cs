@@ -5,8 +5,8 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using TESTINGAPP.Common.Dto;
-using TESTINGAPP.Models;
+using Notebook.Common.Dto;
+using Notebook.Models;
 
 namespace Notebook.Mapper
 {

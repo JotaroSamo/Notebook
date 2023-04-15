@@ -5,11 +5,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Security.Claims;
-using TESTINGAPP.BusinessLogic.Interfaces;
-using TESTINGAPP.Common.Dto;
-using TESTINGAPP.Models;
+using Notebook.BusinessLogic.Interfaces;
+using Notebook.Common.Dto;
+using Notebook.Models;
 
-namespace TESTINGAPP.Controllers
+namespace Notebook.Controllers
 {
     public class AdminController : Controller
     {
