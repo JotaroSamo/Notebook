@@ -1,6 +1,7 @@
 ﻿body {
     font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background-image: url('../img/background.png');
+    background-size: cover;
 }
 .container {
     display: flex;
