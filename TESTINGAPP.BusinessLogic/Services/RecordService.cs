@@ -87,14 +87,14 @@ namespace TESTINGAPP.BusinessLogic.Services
             }
         }
 
-        public async Task<List<Record>> SearchAsync(string searchString)
+        public async Task<List<RecordDto>> SearchAsync(string searchString)
         {
             var record = from u in _recordContext.Records
                         select u;
 
             record = record.Where(u => u.Title.Contains(searchString) || u.Categories.Contains(searchString)|| u.Url.Contains(searchString)|| u.Description.Contains(searchString));
 
-            var recordList = await record.ToListAsync();
+            var recordList =_mapper.Map<List<Record>,List<RecordDto>>(await record.ToListAsync());
             return recordList;
         }
     }

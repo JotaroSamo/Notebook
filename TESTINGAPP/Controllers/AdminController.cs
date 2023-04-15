@@ -52,7 +52,15 @@ namespace TESTINGAPP.Controllers
             {
                 await _adminService.UpdateUser(user);
                 _logger.LogInformation($"{DateTime.Now} User with ID {user.Id} has been updated.");
-                return RedirectToAction("GetAllUser");
+                if (User.IsInRole("Admin"))
+                {
+                    return RedirectToAction("GetAllUser");
+                }
+                else
+                {
+                    return RedirectToAction("UserTools", "UserWork");
+                }
+            
             }
             catch (DbUpdateConcurrencyException ex)
             {
