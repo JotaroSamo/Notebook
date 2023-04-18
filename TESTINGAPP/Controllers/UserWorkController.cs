@@ -39,13 +39,14 @@ namespace Notebook.Controllers
 
         public async Task<IActionResult> GetListUserdRecordAsync()
         {
+            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
             int UserId = HttpContext.Session.GetInt32("UserId") ?? 0;
             if (UserId == 0)
             {
                 return NotFound();
             }
 
-            _logger.LogInformation($"[{DateTime.UtcNow.ToString()}] GetListUserdRecordAsync action called for user with Id={UserId}");
+            _logger.LogInformation($"[{DateTime.Now}] GetListUserdRecordAsync action called for user with Id={UserId}");
             return View("AllRecord", await _recordService.AllRecord(UserId));
         }
 
@@ -62,6 +63,7 @@ namespace Notebook.Controllers
         {
             try
             {
+                HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
                 int UserId = HttpContext.Session.GetInt32("UserId") ?? 0;
                 if (UserId == 0)
                 {

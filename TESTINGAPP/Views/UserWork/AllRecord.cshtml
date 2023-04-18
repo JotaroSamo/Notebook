@@ -5,10 +5,11 @@
 <html>
 <head>
     <link href="~/css/site.css" rel="stylesheet" />
-    <a class="abutton" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
-  
 </head>
 <body class="back">
+    <header class="header_up">
+        <a class="abutton" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
     @if (User.IsInRole("Admin"))
     {
         <a class="abutton" asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
@@ -50,12 +51,12 @@
                         }
                     </td>
                     <td>
-                        <form asp-action="DeleteRecord" asp-controller="UserWork" method="get">
+                        <form class="abutton" asp-action="DeleteRecord" asp-controller="UserWork" method="get">
                             <input type="hidden" name="id" value="@record.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                         <br/>
-                        <form asp-action="EditRecord" asp-controller="UserWork" method="get">
+                        <form class="abutton" asp-action="EditRecord" asp-controller="UserWork" method="get">
                             <input type="hidden" name="id" value="@record.Id" />
                             <input type="hidden" name="UserId" value="@record.UserId" />
                             <button type="submit" class="btn btn-primary">Edit</button>
