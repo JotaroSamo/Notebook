@@ -9,14 +9,6 @@ namespace Notebook.Models
 {
     public class RecordContext : DbContext
     {
-        public RecordContext()
-        {
-            Database.EnsureCreated();
-        }
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=RecordDB;Trusted_Connection=True;");
-        }
 
         public RecordContext(DbContextOptions<RecordContext> options) : base(options)
         {

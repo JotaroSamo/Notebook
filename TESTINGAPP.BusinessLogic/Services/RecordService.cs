@@ -62,7 +62,7 @@ namespace Notebook.BusinessLogic.Services
 				rec.UserId = UserId;
                 rec.Id = id;
                 rec.Date = DateTime.Now;
-                if (record.DeletePhoto)
+                if (record.DeletePhoto&& record.Photo==null)
 				{
 					rec.Photo = null;
 				}
