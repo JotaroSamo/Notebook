@@ -24,7 +24,7 @@ namespace Notebook.Controllers
         [Authorize]
         public IActionResult UserTools()
         {
-            //HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
+            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
             _logger.LogInformation($"[{DateTime.Now}] UserTools action called");
             return View();
         }
@@ -86,8 +86,7 @@ namespace Notebook.Controllers
         [HttpPost]
         public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, int UserId, IFormFile file)
         {
-          
-			if (file != null)
+            if (file != null)
 			{
 				model.Photo = await _recordService.ConvertToByteArray(file);
 			}
@@ -99,6 +98,7 @@ namespace Notebook.Controllers
         [HttpGet]
         public async Task<IActionResult> EditRecord(int id, int UserId)
         {
+            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
             ViewData["Id"] = id;
             _logger.LogInformation($"[{DateTime.Now}] EditRecord action called for record with Id={id} and user with Id={UserId}");
             return View(await _recordService.GetRecordDtoById(id));

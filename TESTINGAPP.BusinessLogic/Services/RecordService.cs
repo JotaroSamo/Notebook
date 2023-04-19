@@ -62,9 +62,9 @@ namespace Notebook.BusinessLogic.Services
 				rec.UserId = UserId;
                 rec.Id = id;
                 rec.Date = DateTime.Now;
-                if (record.DeletePhoto&& record.Photo==null)
+                if (record.DeletePhoto)
 				{
-					rec.Photo = null;
+					rec.Photo = record.Photo;
 				}
 				_recordContext.Records.Update(rec);
                 await _recordContext.SaveChangesAsync();
@@ -92,7 +92,13 @@ namespace Notebook.BusinessLogic.Services
             var record = from u in _recordContext.Records
                         select u;
 
-            record = record.Where(u => u.Title.Contains(searchString) || u.Categories.Contains(searchString)|| u.Url.Contains(searchString)|| u.Description.Contains(searchString));
+            record = record.Where(
+            u => u.Title.Contains(searchString) || 
+            u.Categories.Contains(searchString)||
+            u.Url.Contains(searchString)||
+            u.Description.Contains(searchString)|| 
+            u.Date.ToString().Contains(searchString)
+            );
 
             var recordList =_mapper.Map<List<Record>,List<RecordDto>>(await record.ToListAsync());
             return recordList;

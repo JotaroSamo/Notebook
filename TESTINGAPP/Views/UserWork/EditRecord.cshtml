@@ -39,7 +39,7 @@
             <div>
                 @if (Model.Photo != null)
                 {
-                    <img style="max-height: 200px; max-width: 100px;" src="data:image/png;base64,@Convert.ToBase64String(Model.Photo)" alt="Record photo" />
+                    <img style="max-height: 200px; max-width: 100px;" src="data:image/png;base64,@Convert.ToBase64String(Model.Photo)" alt="Record photo" id="Photo" />
                     <div id="delete-photo">
                         <label for="DeletePhoto">Удалить фотографию</label>
                         <input type="checkbox" id="DeletePhoto" name="DeletePhoto" value="true">
@@ -52,6 +52,7 @@
                         <input type="file" id="file" name="file" accept="image/*">
                     </div>
                 }
+                <input asp-for="Photo" type="hidden"/>
             </div>
             <div id="upload-photo" style="display:none;">
                 <label for="photo">Photo:</label>

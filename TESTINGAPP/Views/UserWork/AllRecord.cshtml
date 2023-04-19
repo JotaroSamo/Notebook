@@ -17,13 +17,14 @@
             @if (User.IsInRole("Admin"))
             {
 
-                <a class="abutton" asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
+                <a class="abutton" style="color:black" asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
 
 
             }
-            <a class="abutton" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
+            <a class="abutton" style="color:black" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
         </div>
     </header>
+    <br />
     <div style="display: flex; justify-content: center; align-items:center;">
         <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
             <div class="search-container">
