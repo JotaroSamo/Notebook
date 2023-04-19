@@ -15,13 +15,14 @@
         {
             if (string.IsNullOrEmpty(Model.Email) || string.IsNullOrEmpty(Model.Password) || string.IsNullOrEmpty(Model.Name) || string.IsNullOrEmpty(Model.Age))
             {
-                <h2>Enter all data!</h2>
+                <h2 style="color:indianred">Enter all data!</h2>
             }
         }
         catch (Exception)
         {
+        
         }
-    <div>
+        <div>
         <label>User name:</label>
         <input type="text" name="Name" maxlength="32" min="5" />
     </div>

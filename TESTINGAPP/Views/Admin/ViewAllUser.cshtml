@@ -30,7 +30,9 @@
                     <th>Name</th>
                     <th>Email</th>
                     <th>Role</th>
-                    <th>Actions</th>
+                    <th>Actions Delete</th>
+                      <th>Actions Edit</th>
+                      <th>Actions View Records</th>
                 </tr>
             </thead>
             <tbody>
@@ -46,16 +48,20 @@
                                 <input type="hidden" name="id" value="@user.Id" />
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-                            <br/>
-                            <form asp-controller="Admin" asp-action="EditUser" method="post">
-                                <input type="hidden" name="id" value="@user.Id" />
-                                <button type="submit" class="btn btn-primary">Edit</button>
-                            </form>
-                            <br />
-                            <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
-                                <input type="hidden" name="UserId" value="@user.Id" />
+                      
+                        </td>
+                        <td>
+                        <form asp-controller="Admin" asp-action="EditUser" method="post">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button type="submit" class="btn btn-primary">Edit</button>
+                        </form>
+                        </td>
+                        <td>
+
+                        <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
+                            <input type="hidden" name="UserId" value="@user.Id" />
                             <button type="submit" class="btn btn-primary">List Record</button>
-                            </form>
+                        </form>
                         </td>
                     </tr>
                 }

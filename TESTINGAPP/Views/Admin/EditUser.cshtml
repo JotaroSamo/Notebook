@@ -44,8 +44,16 @@
             <div>
                 <label asp-for="Role">Role:</label>
                 <select asp-for="Role">
-                    <option value="1">Admin</option>
-                    <option value="0">User</option>
+                    <option value=@Model.Role>@Model.Role.ToString()</option>
+                    @if (Model.Role=="Admin")
+                    {
+                        <option value="0">User</option>
+                    }
+                    else
+                    {
+                        <option value="1">Admin</option>
+                    }
+                  
                 </select>
                 <span asp-validation-for="Role"></span>
             </div>

@@ -8,24 +8,10 @@
     color: white
 }
 
-
-.abutton {
-    background-color: #fff;
-    border: none;
-    border-radius: 5px;
-    color: white;
-    cursor: pointer;
-    font-size: 24px;
-    margin-right: 20px;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
+a {
+    color: white; 
+    align-items:flex-start;
 }
-
-    .abutton:hover {
-        background-color: #3e8e41;
-    }
 
 .back {
     background-color: #f1f1f1;
@@ -64,6 +50,7 @@ input[type="submit"] {
     }
 
 table {
+    width: auto;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -93,8 +80,11 @@ img {
 .btn-danger {
     background-color: #f44336;
     border: none;
+    border-radius: 5px;
     color: white;
     cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -104,8 +94,11 @@ img {
 .btn-primary {
     background-color: #2196F3;
     border: none;
+    border-radius: 5px;
     color: white;
     cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
