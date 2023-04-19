@@ -7,11 +7,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="~/css/site.css" rel="stylesheet" />
-    <a  asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    <link href="~/css/UserWork.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
 </head>
 <body class="back">
-    <h2 class="h2">Edit Record</h2>
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
+ 
     <div class="container">
        
         <form asp-action="SaveEditRecord" asp-controller="UserWork" method="post" enctype="multipart/form-data">
@@ -19,7 +22,7 @@
             <input type="hidden" name="UserId" value="@userId" />
             <div>
                 <label for="title">Title:</label>
-                <input asp-for="Title">
+                <input type="text" asp-for="Title">
             </div>
             <div>
                 <label for="description">Description:</label>
@@ -27,11 +30,11 @@
             </div>
             <div>
                 <label for="categories">Categories:</label>
-                <input asp-for="Categories" >
+                <input type="text" asp-for="Categories" >
             </div>
             <div>
                 <label for="url">Url:</label>
-                <input asp-for="Url">
+                <input type="url" asp-for="Url">
             </div>
             <div>
                 @if (Model.Photo != null)

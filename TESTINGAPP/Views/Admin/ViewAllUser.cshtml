@@ -6,20 +6,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Notebook</title>
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
+    <link href="~/css/Table.css" rel="stylesheet" />
 </head>
 <body class="back">
-    <header>
-        <a class="abutton" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
     </header>
-
-    <main>
+    <br />
+    <div style="display: flex; justify-content: center; align-items:center;">
         <form asp-controller="Admin" asp-action="SearchUser" method="post">
             <div class="search-container">
                 <input type="search" class="form-control" name="searchString" placeholder="Search...">
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>
+        </div>
 
         <table class="table">
             <thead>
@@ -47,23 +49,18 @@
                             <br/>
                             <form asp-controller="Admin" asp-action="EditUser" method="post">
                                 <input type="hidden" name="id" value="@user.Id" />
-                                <button type="submit" class="btn btn-warning">Edit</button>
+                                <button type="submit" class="btn btn-primary">Edit</button>
                             </form>
                             <br />
                             <form asp-area="" asp-controller="UserWork" asp-action="AllRecord" method="get">
                                 <input type="hidden" name="UserId" value="@user.Id" />
-                                <button type="submit" class="btn btn-info">List Record</button>
+                            <button type="submit" class="btn btn-primary">List Record</button>
                             </form>
                         </td>
                     </tr>
                 }
             </tbody>
         </table>
-    </main>
-
-    <footer>
-        <p>Copyright © 2023</p>
-    </footer>
 </body>
 </html>
 

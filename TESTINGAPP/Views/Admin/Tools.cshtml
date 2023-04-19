@@ -4,26 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin tools</title>
-    <link href="~/css/site.css" rel="stylesheet" />
-    <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    <link href="~/css/Home.css" rel="stylesheet"/>
+    <link href="~/css/Admin.css" rel="stylesheet" />
 </head>
 <body class="back">
-    <header>
-        <h1>Admin tools</h1>
+    <header class="header_up">
+        <a class="logout-button" asp-area=""  asp-controller="Home" asp-action="Logout">Log out</a>
     </header>
 
     <nav>
+        <br />
         <ul>
             <li><a asp-area="" method="get" asp-controller="Admin" asp-action="GetAllUser">All User View</a></li>
         
         </ul>
+        <br />
         <ul>
             <li> <a asp-area="" asp-controller="UserWork" asp-action="UserTools">User Tools</a></li>
         </ul>
     </nav>
-
-    <footer>
-        <p>&copy; 2023 Все права защищены</p>
-    </footer>
 </body>
 </html>

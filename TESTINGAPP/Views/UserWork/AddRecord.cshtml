@@ -7,11 +7,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="~/css/site.css" rel="stylesheet" />
+    <link href="~/css/UserWork.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
     <title>Notebook</title>
-    <a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    
 </head>
+
 <body class="back">
+    <header class="header_up">
+        <a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+    </header>
     <form asp-action="Create" asp-controller="UserWork" method="post" enctype="multipart/form-data">
         <div>
             <label for="title">Tittle:</label>

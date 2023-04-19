@@ -1,0 +1,40 @@
+﻿
+
+/* Styling for navigation bar */
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+}
+.logout-button {
+    color: white
+}
+
+nav li a {
+    background-color: #555;
+    display: block;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+    nav li a:hover {
+        background-color: #557;
+    }
+
+/* Styling for button */
+button {
+    background-color: red;
+    color: white;
+    padding: 10px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/* Styling for body background */
+.back {
+    background-color: #f2f2f2;
+}

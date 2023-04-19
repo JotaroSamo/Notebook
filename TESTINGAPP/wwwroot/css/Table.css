@@ -1,0 +1,119 @@
+﻿body {
+    background-color: #f1f1f1;
+    font-family: Arial, sans-serif;
+}
+
+
+.logout-button {
+    color: white
+}
+
+
+.abutton {
+    background-color: #fff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+    .abutton:hover {
+        background-color: #3e8e41;
+    }
+
+.back {
+    background-color: #f1f1f1;
+}
+
+
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+input[type="search"] {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    font-size: 24px;
+    margin-right: 10px;
+    padding: 10px;
+    width: 70%;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 24px;
+    padding: 10px;
+    transition: background-color 0.3s ease-in-out;
+    width: 25%;
+}
+
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+
+table {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin: auto;
+    max-width: auto;
+    text-align: center;
+}
+
+th, td {
+    padding: 10px;
+}
+
+th {
+    background-color: #808080;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+img {
+    max-height: 300px;
+    max-width: 200px;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    font-size: 24px;
+    margin-right: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}

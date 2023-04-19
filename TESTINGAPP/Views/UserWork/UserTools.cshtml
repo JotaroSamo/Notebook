@@ -7,25 +7,33 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<link href="~/css/site.css" rel="stylesheet" />
-	<a asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+	<link href="~/css/Admin.css" rel="stylesheet" />
+	<link href="~/css/Home.css" rel="stylesheet" />
+	
 	
 </head>
+
 <body class="back">
-	<nav class="conteiner">
+	<header class="header_up">
+		<a class="logout-button" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
+	</header>
+	<nav>
+		<br />
 		<ul>
 			<li><a asp-area="" asp-controller="UserWork" asp-action="GetListUserdRecord">List Record</a></li>
 		</ul>
+		<br />
 		<ul>
 			<li>
 				<a asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
 			</li>
 		</ul>
+		<br />
 		<ul>
 			<li>
 				<form asp-area="" asp-controller="Admin" asp-action="EditUser" method="post">
 					<button type="submit">Profile</button>
-					<input type="hidden" name="id" value="@userId" />
+					<input class="abutton" type="hidden" name="id" value="@userId" />
 				</form>
 			</li>
 		</ul>

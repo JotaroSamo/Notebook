@@ -18,14 +18,13 @@ namespace Notebook.Controllers
         {
             _logger = logger;
             _recordService = recodService;
-
         }
    
 
         [Authorize]
         public IActionResult UserTools()
         {
-            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
+            //HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
             _logger.LogInformation($"[{DateTime.Now}] UserTools action called");
             return View();
         }

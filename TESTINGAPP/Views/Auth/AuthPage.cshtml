@@ -1,25 +1,28 @@
-﻿@using Microsoft.AspNetCore.Mvc.TagHelpers;
-@model Notebook.Common.Dto.UserAuthDto;
-@{ViewData["Title"] = "Authorize";}
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="~/css/site.css" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Notebook</title>
+    <title>Authorize</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="~/css/Auth.css" />
+
 </head>
-<body class="back">
+<body>
     <form method="post" asp-action="Auth" asp-controller="Auth">
+        <h1>Authorize</h1>
         <div>
             <label>Email:</label>
-            <input type="email" name="Email" maxlength="32" />
+            <input type="email" name="Email" maxlength="32" required />
         </div>
         <div>
             <label>Password:</label>
-            <input type="password" name="Password" maxlength="32" />
+            <input type="password" name="Password" maxlength="32" required />
         </div>
         <div>
             <input type="submit" value="Login">
+        </div>
+        <div>
+            <p>Don't have an account? <a href="/auth/regpage">Sign up</a></p>
         </div>
     </form>
 </body>

@@ -1,28 +1,37 @@
 ﻿@using Notebook.Common.Dto
 @model List<RecordDto>
-@{ViewData["Title"] = "Record List";}
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="~/css/site.css" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Records List</title>
+    <link href="~/css/Table.css" rel="stylesheet" />
+    <link href="~/css/Home.css" rel="stylesheet" />
 </head>
 <body class="back">
     <header class="header_up">
-        <a class="abutton" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
-    </header>
-    @if (User.IsInRole("Admin"))
-    {
-        <a class="abutton" asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
-    }
-    <div>
-        <a class="abutton" asp-area="" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
-    </div>
-    <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
-        <div class="search-container">
-            <input type="search" class="form-control" name="searchString" placeholder="Search...">
-            <button type="submit" class="btn btn-primary">Search</button>
+        <div>
+            <a class="logout-button" style="align-items:flex-end;" asp-area="" asp-controller="Home" asp-action="Logout">Log out</a>
         </div>
-    </form>
+        <div style="float:right; margin-top:-10px;">
+            @if (User.IsInRole("Admin"))
+            {
+
+                <a class="abutton" asp-area="" asp-controller="Admin" asp-action="Tools">Admin Panel</a>
+
+
+            }
+            <a class="abutton" asp-controller="UserWork" asp-action="AddRecord">New Record</a>
+        </div>
+    </header>
+    <div style="display: flex; justify-content: center; align-items:center;">
+        <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
+            <div class="search-container">
+                <input type="search" class="form-control" name="searchString" placeholder="Search...">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -51,15 +60,15 @@
                         }
                     </td>
                     <td>
-                        <form class="abutton" asp-action="DeleteRecord" asp-controller="UserWork" method="get">
+                        <form asp-action="DeleteRecord" asp-controller="UserWork" method="get">
                             <input type="hidden" name="id" value="@record.Id" />
                             <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
-                        <br/>
-                        <form class="abutton" asp-action="EditRecord" asp-controller="UserWork" method="get">
+                        <br />
+                        <form asp-action="EditRecord" asp-controller="UserWork" method="get">
                             <input type="hidden" name="id" value="@record.Id" />
                             <input type="hidden" name="UserId" value="@record.UserId" />
-                            <button type="submit" class="btn btn-primary">Edit</button>
+                            <button type="submit" class="btn-primary">Edit</button>
                         </form>
                     </td>
                 </tr>
