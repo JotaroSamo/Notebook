@@ -48,7 +48,6 @@ namespace Notebook.Controllers
             {
                 return NotFound();
             }
-
             _logger.LogInformation($"[{DateTime.Now}] GetListUserdRecordAsync action called for user with Id={UserId}");
             return View("AllRecord", await _recordService.AllRecord(UserId));
         }
