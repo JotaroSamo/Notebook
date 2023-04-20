@@ -19,12 +19,16 @@ namespace Notebook.Controllers
             _logger = logger;
             _recordService = recodService;
         }
-   
+
+        private int GetCurrentUserId()
+        {
+            return int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+        }
 
         [Authorize]
         public IActionResult UserTools()
         {
-            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
+            HttpContext.Session.SetInt32("UserId", GetCurrentUserId());
             _logger.LogInformation($"[{DateTime.Now}] UserTools action called");
             return View();
         }
@@ -38,8 +42,8 @@ namespace Notebook.Controllers
 
         public async Task<IActionResult> GetListUserdRecordAsync()
         {
-            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
-            int UserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+
+            int UserId = GetCurrentUserId();
             if (UserId == 0)
             {
                 return NotFound();
@@ -62,8 +66,7 @@ namespace Notebook.Controllers
         {
             try
             {
-                HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
-                int UserId = HttpContext.Session.GetInt32("UserId") ?? 0;
+                int UserId = GetCurrentUserId();
                 if (UserId == 0)
                 {
                     return NotFound();
@@ -84,8 +87,9 @@ namespace Notebook.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, int UserId, IFormFile file)
+        public async Task<IActionResult> SaveEditRecord(RecordDto model, int id, IFormFile file)
         {
+            int UserId = GetCurrentUserId();
             if (file != null)
 			{
 				model.Photo = await _recordService.ConvertToByteArray(file);
@@ -98,7 +102,7 @@ namespace Notebook.Controllers
         [HttpGet]
         public async Task<IActionResult> EditRecord(int id, int UserId)
         {
-            HttpContext.Session.SetInt32("UserId", int.Parse(HttpContext.User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier)?.Value));
+           
             ViewData["Id"] = id;
             _logger.LogInformation($"[{DateTime.Now}] EditRecord action called for record with Id={id} and user with Id={UserId}");
             return View(await _recordService.GetRecordDtoById(id));
