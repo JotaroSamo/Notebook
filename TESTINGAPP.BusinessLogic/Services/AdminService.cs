@@ -36,6 +36,7 @@ namespace Notebook.BusinessLogic.Services
             return _mapper.Map<List<User>,List<UserDto>>(await _recordContext.Users.ToListAsync());
         }
 
+
         public async Task<UserDto> GetById(int id)
         {
             return _mapper.Map<User, UserDto>(await _recordContext.Users.FindAsync(id));

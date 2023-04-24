@@ -8,6 +8,7 @@ using System.Security.Claims;
 using Notebook.BusinessLogic.Interfaces;
 using Notebook.Common.Dto;
 using Notebook.Models;
+using Notebook.BusinessLogic.Services;
 
 namespace Notebook.Controllers
 {
@@ -15,13 +16,13 @@ namespace Notebook.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IAdminService _adminService;
-        private readonly IMapper _mapper;
+  
 
-        public AdminController(ILogger<AdminController> logger, IAdminService adminService, IMapper mapper)
+        public AdminController(ILogger<AdminController> logger, IAdminService adminService)
         {
             _logger = logger;
             _adminService = adminService;
-        _mapper = mapper;
+
 
         }
         [Authorize]
@@ -40,6 +41,7 @@ namespace Notebook.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         public async Task<IActionResult> UpdateUser(int id, [Bind("Id,Name,Email,Password,Age,Role")] UserDto user)
         {
             if (id != user.Id)
@@ -72,14 +74,13 @@ namespace Notebook.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int id)
         {
             await _adminService.Delete(id);
             _logger.LogInformation($"User with ID {id} has been deleted.");
             return RedirectToAction("GetAllUser");
         }
- 
+
         [HttpGet]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> GetAllUser()
@@ -103,7 +104,6 @@ namespace Notebook.Controllers
             return View(user);
         }
         [Authorize(Roles = "Admin")]
-       
         public IActionResult Tools()
         {
             return View();

@@ -29,6 +29,10 @@
         <form asp-controller="UserWork" asp-action="SearchRecord" method="post">
             <div class="search-container">
                 <input type="search" class="form-control" name="searchString" placeholder="Search...">
+                @foreach(var record in Model)
+                {
+                    <input type="hidden" name="UserId" value="@record?.UserId" />
+                }
                 <button type="submit" class="btn btn-primary">Search</button>
             </div>
         </form>

@@ -6,6 +6,7 @@ using Notebook.BusinessLogic.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Notebook.Models;
 using Notebook.BusinessLogic.Services;
+using Newtonsoft.Json;
 
 namespace Notebook.Controllers
 {
@@ -39,7 +40,6 @@ namespace Notebook.Controllers
             _logger.LogInformation($"[{DateTime.Now}] AddRecord action called");
             return View();
         }
-
         public async Task<IActionResult> GetListUserdRecordAsync()
         {
 
@@ -56,6 +56,7 @@ namespace Notebook.Controllers
         [Authorize]
         public async Task<IActionResult> AllRecord(int UserId)
         {
+            
             _logger.LogInformation($"[{DateTime.Now}] AllRecord action called for user with Id={UserId}");
             return View(await _recordService.AllRecord(UserId));
         }
@@ -115,22 +116,30 @@ namespace Notebook.Controllers
             return await GetListUserdRecordAsync();
         }
         [HttpPost]
-        public async Task<IActionResult> SearchRecord(string searchString)
+        public async Task<IActionResult> SearchRecord(string searchString, int UserId)
         {
+           if (UserId==0&&User.IsInRole("Admin"))
+           {
+               return RedirectToAction("GetAllUser", "Admin");
+           }
+            else if (UserId == 0)
+            {
+                return View("AllRecord",await _recordService.AllRecord(GetCurrentUserId()));
+            }
+
             try
             {
                 if (!string.IsNullOrEmpty(searchString))
                 {
-                    var records = await _recordService.SearchAsync(searchString);
-                    if (records == null)
-                    {
-                        _logger.LogInformation($"[{DateTime.Now}] No records found for search query {searchString}");
-                        return RedirectToAction("GetListUserdRecordAsync");
-                    }
-                    _logger.LogInformation($"[{DateTime.Now}] Retrieved {records.Count()} records for search query {searchString}");
-                    return View("AllRecord", records);
+                    var recordList = await _recordService.SearchAsync(searchString, UserId);
+
+                    _logger.LogInformation($"[{DateTime.Now}] Retrieved {recordList.Count()} records for search query {searchString}");
+
+                    return View("AllRecord", recordList);
+
                 }
-                return await GetListUserdRecordAsync();
+                    return View("AllRecord",await _recordService.AllRecord(UserId));
+
             }
             catch (Exception ex)
             {

@@ -15,6 +15,7 @@ namespace Notebook.BusinessLogic.Interfaces
         Task Delete(int id);
         Task<UserDto> GetById(int id);
         Task UpdateUser(UserDto user);
+
         Task<List<UserDto>> SearchAsync(string searchString);
     }
 }

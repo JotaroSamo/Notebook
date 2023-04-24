@@ -15,7 +15,7 @@ namespace Notebook.BusinessLogic.Interfaces
         Task RecordCreate(RecordDto record, int id);
         Task DeleteRecord(int id);
         Task EditRecord(RecordDto record, int id, int UserId);
-        Task<List<RecordDto>> SearchAsync(string searchString);
+        Task<List<RecordDto>> SearchAsync(string searchString, int UserId);
         Task<RecordDto> GetRecordDtoById(int id);
         Task<byte[]> ConvertToByteArray(IFormFile file);
 

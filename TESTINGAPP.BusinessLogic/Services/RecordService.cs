@@ -87,21 +87,19 @@ namespace Notebook.BusinessLogic.Services
             }
         }
 
-        public async Task<List<RecordDto>> SearchAsync(string searchString)
+        public async Task<List<RecordDto>> SearchAsync(string searchString, int UserId)
         {
-            var record = from u in _recordContext.Records
-                        select u;
+            var records = from u in _recordContext.Records where u.UserId == UserId
+                         select u;
+            records = records.Where(u =>
+         u.Title.Contains(searchString) ||
+         u.Categories.Contains(searchString) ||
+          u.Url.Contains(searchString) ||
+          u.Description.Contains(searchString) ||
+         u.Date.ToString().Contains(searchString)
+          );
+            return _mapper.Map <List<Record>, List<RecordDto>>(await records.ToListAsync());
 
-            record = record.Where(
-            u => u.Title.Contains(searchString) || 
-            u.Categories.Contains(searchString)||
-            u.Url.Contains(searchString)||
-            u.Description.Contains(searchString)|| 
-            u.Date.ToString().Contains(searchString)
-            );
-
-            var recordList =_mapper.Map<List<Record>,List<RecordDto>>(await record.ToListAsync());
-            return recordList;
         }
     }
 }
